@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum – Alexander Schinkel</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:     #0d1f3c;
+      --teal:     #00b4c8;
+      --white:    #ffffff;
+      --bg:       #f5f6f8;
+      --ink:      #1a1f2e;
+      --ink-mid:  #4a5568;
+      --line:     #e2e6ed;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--navy);
+      padding: 20px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav a.nav-logo img { height: 36px; filter: brightness(0) invert(1); }
+
+    nav a.back {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    nav a.back:hover { color: var(--teal); }
+
+    /* CONTENT */
+    .page {
+      max-width: 760px;
+      margin: 80px auto;
+      padding: 0 24px 100px;
+    }
+
+    .page-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 56px;
+      line-height: 1.15;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 40px 0 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      margin-bottom: 8px;
+    }
+
+    a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      padding: 32px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.78rem;
+    }
+
+    footer img { height: 28px; filter: brightness(0) invert(0.5); }
+
+    footer a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--teal); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="https://oelex09.github.io/Schinkel-Consulting/logo_schinkel.png" alt="Schinkel Consulting" />
+    </a>
+    <a href="index.html" class="back">
+      ← Zurück zur Startseite
+    </a>
+  </nav>
+
+  <main class="page">
+    <div class="page-label">Rechtliches</div>
+    <h1>Impressum</h1>
+
+    <h2>Angaben gemäß § 5 TMG</h2>
+    <p>Alexander Schinkel</p>
+    <p>Auf der Röte 7</p>
+    <p>75397 Simmozheim</p>
+
+    <h2>Kontakt</h2>
+    <p>Telefon: <a href="tel:+4970337080100">+49 (0) 7033 7080100</a></p>
+    <p>Telefax: +49 (0) 7033 7080045</p>
+    <p>E-Mail: <a href="mailto:info@alexanderschinkel.com">info@alexanderschinkel.com</a></p>
+
+    <h2>Umsatzsteuer-Identifikationsnummer</h2>
+    <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:</p>
+    <p>DE246519171</p>
+
+    <h2>Redaktionell verantwortlich</h2>
+    <p>Alexander Schinkel</p>
+    <p>Poststraße 2</p>
+    <p>75382 Althengstett</p>
+
+    <h2>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
+    <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+  </main>
+
+  <footer>
+    <img src="https://oelex09.github.io/Schinkel-Consulting/logo_schinkel.png" alt="Schinkel Consulting" />
+    <span>© 2026 Schinkel Consulting · Alexander Schinkel</span>
+    <span>
+      <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="agb.html">AGB</a>
+    </span>
+  </footer>
+
+</body>
+</html>

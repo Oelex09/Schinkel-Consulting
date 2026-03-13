@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGB – Alexander Schinkel</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:     #0d1f3c;
+      --teal:     #00b4c8;
+      --white:    #ffffff;
+      --bg:       #f5f6f8;
+      --ink:      #1a1f2e;
+      --ink-mid:  #4a5568;
+      --line:     #e2e6ed;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    nav {
+      background: var(--navy);
+      padding: 20px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav a.nav-logo img { height: 36px; filter: brightness(0) invert(1); }
+
+    nav a.back {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    nav a.back:hover { color: var(--teal); }
+
+    .page {
+      max-width: 760px;
+      margin: 80px auto;
+      padding: 0 24px 100px;
+    }
+
+    .page-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+
+    .intro {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      margin-bottom: 56px;
+      line-height: 1.6;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 48px 0 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    p {
+      font-size: 0.93rem;
+      color: var(--ink-mid);
+      margin-bottom: 12px;
+    }
+
+    a {
+      color: var(--teal);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    a:hover { text-decoration: underline; }
+
+    footer {
+      background: var(--navy);
+      padding: 32px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.78rem;
+    }
+
+    footer img { height: 28px; filter: brightness(0) invert(0.5); }
+
+    footer a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--teal); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="https://oelex09.github.io/Schinkel-Consulting/logo_schinkel.png" alt="Schinkel Consulting" />
+    </a>
+    <a href="index.html" class="back">← Zurück zur Startseite</a>
+  </nav>
+
+  <main class="page">
+    <div class="page-label">Rechtliches</div>
+    <h1>Allgemeine Geschäftsbedingungen</h1>
+    <p class="intro">für die Erbringung von Dienstleistungen von Alexander Schinkel, Auf der Röte 7, 75397 Simmozheim, E-Mail: <a href="mailto:info@alexanderschinkel.com">info@alexanderschinkel.com</a> (nachfolgend „Auftragnehmer") gegenüber seinen Kunden (nachfolgend „Auftraggeber")</p>
+
+    <h2>1. Allgemeines</h2>
+    <p>1.1 Diese Allgemeinen Geschäftsbedingungen (AGB) für die Erbringung von Dienstleistungen gelten für Verträge, die zwischen dem Auftraggeber und dem Auftragnehmer unter Einbeziehung dieser AGB geschlossen werden.</p>
+    <p>1.2 Soweit neben diesen AGB weitere Vertragsdokumente oder andere Geschäftsbedingungen in Text- oder Schriftform Vertragsbestandteil geworden sind, gehen die Regelungen dieser weiteren Vertragsdokumente im Widerspruchsfalle den vorliegenden AGB vor.</p>
+    <p>1.3 Von diesen Geschäftsbedingungen abweichende AGB, die durch den Auftraggeber verwendet werden, erkennt der Auftragnehmer – vorbehaltlich einer ausdrücklichen Zustimmung – nicht an.</p>
+
+    <h2>2. Vertragsgegenstand und Leistungsumfang</h2>
+    <p>2.1 Der Auftragnehmer erbringt als selbständiger Unternehmer folgende Leistungen gegenüber dem Auftraggeber: Individuelles Mentoring und Coaching im Bereich persönliche Entwicklung. Dabei werden Menschen dabei unterstützt, ihre Stärken zu erkennen, Ziele zu definieren und zu erreichen, persönliche Herausforderungen zu meistern und ihr Potenzial voll auszuschöpfen. Die Arbeit kann in Einzelgesprächen, Workshops oder Online-Formaten erfolgen und ist auf die individuellen Bedürfnisse und Ziele der Teilnehmer:innen zugeschnitten.</p>
+    <p>2.2 Der spezifische Leistungsumfang ist Gegenstand von Individualvereinbarungen zwischen Auftragnehmer und dem Auftraggeber.</p>
+    <p>2.3 Der Auftragnehmer erbringt die vertragsgemäßen Leistungen mit größtmöglicher Sorgfalt und Gewissenhaftigkeit nach dem jeweils neuesten Stand, neuesten Regeln und Erkenntnissen.</p>
+    <p>2.4 Der Auftragnehmer ist zur Erbringung der vertragsgemäß geschuldeten Leistungen verpflichtet. Bei der Durchführung seiner Tätigkeit ist er jedoch etwaigen Weisungen im Hinblick auf die Art der Erbringung seiner Leistungen, den Ort der Leistungserbringung ebenso wie die Zeit der Leistungserbringung nicht unterworfen. Die Leistungserbringung durch den Auftragnehmer erfolgt lediglich in Abstimmung und in Koordination mit dem Auftraggeber.</p>
+
+    <h2>3. Mitwirkungspflichten des Auftraggebers</h2>
+    <p>Es obliegt dem Auftraggeber, die von ihm zum Zwecke der Leistungserfüllung zur Verfügung zu stellenden Informationen, Daten und sonstigen Inhalte vollständig und korrekt mitzuteilen. Für Verzögerungen bei der Leistungserbringung, die durch eine verspätete und notwendige Mit- bzw. Zuarbeit des Kunden entstehen, ist der Auftragnehmer gegenüber dem Kunden in keinerlei Hinsicht verantwortlich.</p>
+
+    <h2>4. Vergütung</h2>
+    <p>4.1 Die Vergütung wird individualvertraglich vereinbart.</p>
+    <p>4.2 Die Vergütung ist nach der Leistung der Dienste zu entrichten. Ist die Vergütung nach Zeitabschnitten bemessen, so ist sie nach dem Ablauf der einzelnen Zeitabschnitte zu entrichten (§ 614 BGB). Bei aufwandsbezogener Abrechnung ist der Auftragnehmer vorbehaltlich abweichender Vereinbarungen berechtigt, die erbrachten Leistungen monatlich abzurechnen.</p>
+    <p>4.3 Der Auftragnehmer stellt dem Auftraggeber nach Erbringung der Leistungen eine Rechnung per Post oder per E-Mail (z. B. als PDF). Die Vergütung ist innerhalb von 14 Tagen nach Zugang der Rechnung zur Zahlung fällig.</p>
+
+    <h2>5. Haftung / Freistellung</h2>
+    <p>5.1 Der Auftragnehmer haftet aus jedem Rechtsgrund uneingeschränkt bei Vorsatz oder grober Fahrlässigkeit, bei vorsätzlicher oder fahrlässiger Verletzung des Lebens, des Körpers oder der Gesundheit, aufgrund eines Garantieversprechens oder aufgrund zwingender Haftung. Verletzt der Auftragnehmer fahrlässig eine wesentliche Vertragspflicht, ist die Haftung auf den vertragstypischen, vorhersehbaren Schaden begrenzt. Im Übrigen ist eine Haftung des Auftragnehmers ausgeschlossen.</p>
+    <p>5.2 Der Auftraggeber stellt den Auftragnehmer von jeglichen Ansprüchen Dritter frei, die gegen den Auftragnehmer aufgrund von Verstößen des Kunden gegen diese Vertragsbedingungen oder gegen geltendes Recht geltend gemacht werden.</p>
+
+    <h2>6. Vertragsdauer und Kündigung</h2>
+    <p>6.1 Die Vertragsdauer und die Fristen zur ordentlichen Kündigung vereinbaren die Parteien individuell.</p>
+    <p>6.2 Das Recht beider Parteien zur fristlosen Kündigung aus wichtigem Grund bleibt unberührt.</p>
+    <p>6.3 Der Auftragnehmer hat alle ihm überlassenen Unterlagen und sonstigen Inhalte nach Vertragsbeendigung unverzüglich zurückzugeben oder zu vernichten. Elektronische Daten sind vollständig zu löschen, sofern keine gesetzliche Aufbewahrungspflicht besteht.</p>
+
+    <h2>7. Vertraulichkeit und Datenschutz</h2>
+    <p>7.1 Der Auftragnehmer wird alle ihm im Zusammenhang mit dem Auftrag zur Kenntnis gelangenden Vorgänge streng vertraulich behandeln. Die Geheimhaltungspflicht gilt zeitlich unbegrenzt über die Dauer dieses Vertrages hinaus.</p>
+    <p>7.2 Der Auftragnehmer verpflichtet sich, bei der Durchführung des Auftrags sämtliche datenschutzrechtlichen Vorschriften – insbesondere die Vorschriften der Datenschutzgrundverordnung und des Bundesdatenschutzgesetzes – einzuhalten.</p>
+
+    <h2>8. Schlussbestimmungen</h2>
+    <p>8.1 Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des CISG.</p>
+    <p>8.2 Sollte eine Bestimmung dieser AGB unwirksam sein oder werden, so wird die Gültigkeit der AGB im Übrigen hiervon nicht berührt.</p>
+    <p>8.3 Der Auftraggeber wird den Auftragnehmer bei der Erbringung seiner vertragsgemäßen Leistungen durch angemessene Mitwirkungshandlungen fördern und insbesondere die zur Erfüllung des Auftrags erforderlichen Informationen und Daten zur Verfügung stellen.</p>
+    <p>8.4 Sofern der Auftraggeber Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist oder keinen allgemeinen Gerichtsstand in Deutschland hat, vereinbaren die Parteien den Sitz des Auftragnehmers als Gerichtsstand für sämtliche Streitigkeiten aus diesem Vertragsverhältnis.</p>
+    <p>8.5 Der Auftragnehmer ist berechtigt, diese AGB aus sachlich gerechtfertigten Gründen und unter Einhaltung einer angemessenen Frist zu ändern. Bestandskunden werden hierüber spätestens zwei Wochen vor Inkrafttreten der Änderung per E-Mail benachrichtigt.</p>
+
+    <h2>9. Informationen zur Online-Streitbeilegung / Verbraucherschlichtung</h2>
+    <p>Die EU-Kommission stellt im Internet unter folgendem Link eine Plattform zur Online-Streitbeilegung bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr</a>.</p>
+    <p>Der Anbieter ist weder bereit noch verpflichtet, an einem Verbraucherstreitschlichtungsverfahren nach dem VSBG teilzunehmen.</p>
+  </main>
+
+  <footer>
+    <img src="https://oelex09.github.io/Schinkel-Consulting/logo_schinkel.png" alt="Schinkel Consulting" />
+    <span>© 2026 Schinkel Consulting · Alexander Schinkel</span>
+    <span>
+      <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="agb.html">AGB</a>
+    </span>
+  </footer>
+
+</body>
+</html>

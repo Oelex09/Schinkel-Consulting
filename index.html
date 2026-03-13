@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexander Schinkel – Schinkel Consulting</title>
+  <meta name="description" content="Unternehmensberatung für den Mittelstand. Prozesse. Strategie. Ergebnisse." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0d1f3c;
+      --navy-mid:   #162d55;
+      --blue:       #1a4175;
+      --teal:       #00b4c8;
+      --teal-pale:  #e6f7fa;
+      --white:      #ffffff;
+      --bg:         #f5f6f8;
+      --ink:        #1a1f2e;
+      --ink-mid:    #4a5568;
+      --ink-soft:   #9aa3b2;
+      --line:       #e2e6ed;
+      --card:       #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.4s, padding 0.3s, box-shadow 0.3s;
+    }
+
+    nav.scrolled {
+      background: rgba(13,31,60,0.97);
+      backdrop-filter: blur(16px);
+      padding: 14px 56px;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.25);
+    }
+
+    .nav-logo img {
+      height: 44px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--teal); }
+
+    .nav-cta {
+      background: var(--teal) !important;
+      color: var(--navy) !important;
+      padding: 10px 24px;
+      font-weight: 600 !important;
+      letter-spacing: 0.06em !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: #00cce0 !important;
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('Bildschirmfoto%202026-03-12%20um%2012.08.33.png');
+      background-size: cover;
+      background-position: center 20%;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    /* Gradient overlay: left dark for text, right transparent for photo */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        100deg,
+        rgba(10,20,45,0.90) 0%,
+        rgba(10,20,45,0.65) 40%,
+        rgba(10,20,45,0.15) 65%,
+        rgba(10,20,45,0.05) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 56px;
+      max-width: 740px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1.5px;
+      background: var(--teal);
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.35s forwards;
+    }
+
+    .hero-title .highlight {
+      color: var(--teal);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.80);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.65s forwards;
+    }
+
+    .btn-teal {
+      display: inline-block;
+      padding: 16px 40px;
+      background: var(--teal);
+      color: var(--navy);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.25s;
+      border: none;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .btn-teal:hover {
+      background: #00cce0;
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost-white {
+      display: inline-block;
+      padding: 15px 40px;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s;
+    }
+
+    .btn-ghost-white:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      transform: translateY(-2px);
+    }
+
+    /* Bottom stats bar */
+    .hero-stats {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 2;
+      background: rgba(13,31,60,0.85);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      opacity: 0;
+      animation: fadeIn 0.8s 1s forwards;
+    }
+
+    .hero-stat {
+      padding: 28px 48px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-stat:last-child { border-right: none; }
+
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(0,180,200,0.12);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .stat-icon svg { color: var(--teal); }
+
+    .stat-val {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    /* ── INTRO STRIP ── */
+    .intro-strip {
+      background: var(--navy);
+      padding: 72px 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .intro-heading {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .intro-heading span { color: var(--teal); }
+
+    .intro-text {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.85;
+    }
+
+    /* ── LEISTUNGEN ── */
+    .section { padding: 100px 56px; }
+    .section-light { background: var(--white); }
+    .section-bg { background: var(--bg); }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--teal);
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      max-width: 520px;
+      line-height: 1.8;
+    }
+
+    .leistungen-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 64px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .leistungen-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .leistung-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 48px 36px;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      cursor: default;
+    }
+
+    .leistung-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--teal-pale);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      transition: background 0.3s;
+    }
+
+
+    .leistung-icon svg { color: var(--teal); }
+
+    .leistung-num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .leistung-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .leistung-text {
+      font-size: 0.87rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.8;
+    }
+
+    /* ── ÜBER ── */
+    .ueber-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .ueber-img-wrap {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: var(--line);
+    }
+
+    .ueber-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .ueber-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #dde3ed, #c8d0e0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ueber-img-placeholder svg { width: 56px; height: 56px; color: #a0aab8; }
+
+    .ueber-badge {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: var(--navy);
+      color: var(--white);
+      padding: 14px 22px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ueber-badge::before {
+      content: '';
+      display: block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .ueber-content .section-title { margin-bottom: 24px; }
+
+    .ueber-text {
+      font-size: 0.93rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .ueber-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .ueber-feature {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 20px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-mid);
+    }
+
+    .ueber-feature svg { color: var(--teal); flex-shrink: 0; }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial-section {
+      background: var(--navy);
+      padding: 100px 56px;
+    }
+
+    .testimonial-section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .testimonial-section-header .section-label { color: var(--teal); }
+    .testimonial-section-header .section-title { color: var(--white); }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      max-width: 1000px;
+      margin: 0 auto 72px;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .testimonial-stars {
+      color: var(--teal);
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-text {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .author-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .author-line {
+      width: 32px; height: 1.5px;
+      background: var(--teal);
+    }
+
+    .author-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .author-role {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.45);
+      font-weight: 400;
+    }
+
+    .testimonial-overall {
+      text-align: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonial-overall strong {
+      color: var(--teal);
+      font-size: 1.1rem;
+    }
+
+    /* ── KONTAKT ── */
+    .kontakt-inner {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 80px;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .kontakt-info .section-sub { margin-bottom: 40px; }
+
+    .kontakt-detail {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: var(--ink-mid);
+      text-decoration: none;
+      margin-bottom: 16px;
+      transition: color 0.2s;
+    }
+
+    .kontakt-detail svg { color: var(--teal); flex-shrink: 0; }
+    .kontakt-detail:hover { color: var(--teal); }
+
+    .kontakt-form {
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      padding: 0;
+    }
+
+    .form-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060d1a;
+      color: rgba(255,255,255,0.4);
+      padding: 40px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+    }
+
+    footer img {
+      height: 36px;
+      object-fit: contain;
+      filter: brightness(0) invert(0.5);
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: rgba(255,255,255,0.8); }
+
+    .divider { width: 100%; height: 1px; background: var(--line); }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ── KEYFRAMES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── MOBILE MENU TOGGLE ── */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .menu-toggle span {
+      display: block; width: 24px; height: 1.5px;
+      background: rgba(255,255,255,0.8);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .leistungen-header { grid-template-columns: 1fr; gap: 20px; margin-bottom: 48px; }
+      .leistungen-grid { grid-template-columns: 1fr 1fr; }
+      .ueber-inner { grid-template-columns: 1fr; gap: 48px; }
+      .kontakt-inner { grid-template-columns: 1fr; gap: 48px; }
+      .intro-strip-inner { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--navy);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.2rem; }
+      .menu-toggle { display: flex; z-index: 101; position: relative; }
+      .hero-content { padding: 0 24px; }
+      .section { padding: 72px 24px; }
+      .intro-strip { padding: 56px 24px; }
+      .testimonial-section { padding: 72px 24px; }
+      .testimonial-grid { grid-template-columns: 1fr; gap: 20px; }
+      .leistungen-grid { grid-template-columns: 1fr; }
+      .ueber-features { grid-template-columns: 1fr; }
+
+      .kontakt-form { padding: 0; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+      .hero-stats { grid-template-columns: 1fr; gap: 0; }
+      .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 16px 24px; }
+      .hero-stat:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">
+      <img src="https://oelex09.github.io/Schinkel-Consulting/logo_schinkel.png"
+           alt="Schinkel Consulting" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#ueber">Über mich</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+      <li><a href="#kontakt" class="nav-cta">Gespräch vereinbaren</a></li>
+    </ul>
+    <button class="menu-toggle" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">Schinkel Consulting</div>
+      <h1 class="hero-title">
+        Mehr Zeit fürs<br />
+        <span class="highlight">Wesentliche.</span>
+      </h1>
+      <p class="hero-sub">
+        Ihr Büro läuft auch ohne Sie – mit intelligenten Automatisierungslösungen für Handwerk und Bau. Praxiserprobt, sofort einsetzbar, ohne IT-Kenntnisse.
+      </p>
+      <div class="hero-actions">
+        <a href="https://calendly.com/alexanderschinkel-info/30min" target="_blank" rel="noopener" class="btn-teal">Kostenloses Erstgespräch</a>
+        <a href="#leistungen" class="btn-ghost-white">Leistungen ansehen</a>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <div class="stat-val">30+</div>
+          <div class="stat-label">Jahre Erfahrung</div>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <div class="stat-val">4,9 <span style="color:#f5c518;">★</span></div>
+          <div class="stat-label">Kundenzufriedenheit</div>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <div>
+          <div class="stat-val">100%</div>
+          <div class="stat-label">Lösungsorientiert</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO STRIP -->
+  <div class="intro-strip">
+    <div class="intro-strip-inner">
+      <h2 class="intro-heading reveal">
+        „Die Welt dreht sich immer schneller –<br />
+        <span>wer heute wartet, verliert<br />morgen den Auftrag."</span>
+      </h2>
+      <p class="intro-text reveal reveal-d1">
+        Kein generisches Software-Produkt von der Stange. Wir verstehen Ihre Branche von innen, sprechen Ihre Sprache und liefern Lösungen, die sich in Ihren Alltag einfügen – nicht umgekehrt.
+      </p>
+    </div>
+  </div>
+
+  <!-- LEISTUNGEN -->
+  <section class="section section-bg" id="leistungen">
+    <div class="leistungen-header">
+      <div class="reveal">
+        <div class="section-label">Was ich für Sie tue</div>
+        <h2 class="section-title">Was wir für Sie tun –<br />ein Auszug.</h2>
+      </div>
+      <p class="section-sub reveal reveal-d1">
+        Bis zu 40 % weniger Büroaufwand – mit praxiserprobten Automatisierungslösungen, die sich sofort in Ihren Alltag einfügen.
+      </p>
+    </div>
+
+    <div class="leistungen-grid" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="leistung-card reveal reveal-d1">
+        <div class="leistung-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="leistung-num">01 · Leistung</div>
+        <h3 class="leistung-title">Digitales Bautagebuch</h3>
+        <p class="leistung-text">Automatische Erfassung von Tagesberichten, Wetterdaten, Fotos und Personalstunden – direkt vom Smartphone, ohne Doppeleingabe.</p>
+      </div>
+      <div class="leistung-card reveal reveal-d2">
+        <div class="leistung-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="leistung-num">02 · Leistung</div>
+        <h3 class="leistung-title">Besprechungs­protokolle</h3>
+        <p class="leistung-text">KI-gestützte Protokollerstellung aus Sprachaufzeichnungen – fertig formatiert, archiviert und versandt, noch während Sie die Baustelle verlassen.</p>
+      </div>
+      <div class="leistung-card reveal reveal-d3">
+        <div class="leistung-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <div class="leistung-num">03 · Leistung</div>
+        <h3 class="leistung-title">E-Mail-Organisation</h3>
+        <p class="leistung-text">Automatisches Sortieren, Priorisieren und Beantworten von Standardanfragen. Kein Postfach-Chaos mehr – nur das, was wirklich Ihre Aufmerksamkeit braucht.</p>
+      </div>
+      <div class="leistung-card reveal reveal-d3">
+        <div class="leistung-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <div class="leistung-num">04 · Leistung</div>
+        <h3 class="leistung-title">Administrative Prozesse</h3>
+        <p class="leistung-text">Angebotserstellung, Aufmaßverarbeitung, Rechnungsworkflow, Subunternehmer-Dokumentation – alles automatisiert, nachvollziehbar und revisionssicher.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ÜBER -->
+  <section class="section section-light" id="ueber">
+    <div class="ueber-inner">
+      <div class="ueber-visual reveal">
+        <div class="ueber-img-wrap">
+          <img src="364.jpeg" alt="Alexander Schinkel" />
+          <div class="ueber-badge">Alexander Schinkel</div>
+        </div>
+      </div>
+
+      <div class="ueber-content reveal reveal-d1">
+        <div class="section-label">Über mich</div>
+        <h2 class="section-title">Handwerksmeister.<br />Kaufmann.<br />Berater.</h2>
+        <p class="ueber-text">
+          Als Maurer- und Stahlbetonbaumeister, Bautechniker und ausgebildeter Kaufmann kenne ich die täglichen Herausforderungen im Bauhandwerk aus 30 Jahren eigener Praxis.
+        </p>
+        <p class="ueber-text">
+          Ich weiß, wie viel wertvolle Zeit auf der Baustelle und im Büro mit wiederkehrenden Aufgaben verloren geht – Zeit, die Sie eigentlich für Ihre Kernkompetenz, Ihre Kunden und Ihr Team brauchen.
+        </p>
+
+        <div class="ueber-features">
+          <div class="ueber-feature">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            30 Jahre Branchenerfahrung
+          </div>
+          <div class="ueber-feature">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Baumeister & Kaufmann
+          </div>
+          <div class="ueber-feature">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Praxiserprobte Lösungen
+          </div>
+          <div class="ueber-feature">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Ohne IT-Kenntnisse nutzbar
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial-section" id="kundenstimmen">
+    <div class="testimonial-section-header reveal">
+      <div class="section-label">Kundenstimmen</div>
+      <h2 class="section-title">Was Kunden über uns sagen.</h2>
+    </div>
+
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★✨ 4,9 / 5</div>
+        <p class="testimonial-text">„Ich bin mit der gesamten Zusammenarbeit außerordentlich zufrieden. Die Kompetenz war in jeder Phase spürbar, alle Inhalte wurden klar und verständlich erklärt und ich fühlte mich jederzeit bestens begleitet. Die Zielerreichung lag bei 100 % – meine Erwartungen wurden sogar übertroffen. Auch die Kommunikation war stets transparent, schnell und angenehm. Insgesamt eine absolute Empfehlung!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MW</div>
+          <div>
+            <div class="author-name">Martin Walz</div>
+            <div class="author-role">Geschäftsführer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-d1">
+        <div class="testimonial-stars">★★★★✨ 4,8 / 5</div>
+        <p class="testimonial-text">„Ich bin sehr zufrieden mit der Zusammenarbeit. Die Kompetenz, Erklärungen, Zielerreichung und Kommunikation waren alle ausgezeichnet. Das Preis-Leistungs-Verhältnis war ebenfalls sehr gut. Insgesamt eine sehr positive Erfahrung und absolut empfehlenswert!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SF</div>
+          <div>
+            <div class="author-name">Silvio Fereirra</div>
+            <div class="author-role">Geschäftsführer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-d1">
+        <div class="testimonial-stars">★★★★✨ 4,9 / 5</div>
+        <p class="testimonial-text">„Die Zusammenarbeit war von Anfang bis Ende sehr angenehm. Alles wurde klar erklärt, sehr professionell durchgeführt und ich habe das erreicht, was ich mir gewünscht habe. Die Kommunikation war jederzeit freundlich und zuverlässig. Ich bin insgesamt sehr zufrieden und kann den Service weiterempfehlen!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">VB</div>
+          <div>
+            <div class="author-name">Vitor Batista</div>
+            <div class="author-role">Abteilungsleiter</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-d2">
+        <div class="testimonial-stars">★★★★✨ 4,9 / 5</div>
+        <p class="testimonial-text">„Ich bin mit der Leistung wirklich sehr zufrieden. Alles wurde kompetent, verständlich und zielorientiert umgesetzt. Die Kommunikation lief jederzeit schnell und angenehm. Das Preis-Leistungs-Verhältnis ist sehr gut. Insgesamt eine top Erfahrung!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JH</div>
+          <div>
+            <div class="author-name">Jessica Heid</div>
+            <div class="author-role">Pflegerin</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="testimonial-overall reveal">
+      Durchschnittliche Bewertung: <strong>4,9 ★</strong> von 5 – basierend auf Kundenfeedback
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="section section-bg" id="kontakt">
+    <div class="kontakt-inner">
+      <div class="kontakt-info reveal">
+        <div class="section-label">Kontakt</div>
+        <h2 class="section-title">Kostenloses Erstgespräch vereinbaren.</h2>
+        <p class="section-sub kontakt-info">
+          Lassen Sie uns herausfinden, wo in Ihrem Betrieb die größten Potenziale schlummern. Ich zeige Ihnen anhand konkreter Praxisbeispiele, was heute möglich ist – und was es kostet. Sie entscheiden.
+        </p>
+        <br />
+        <a href="tel:+4970337080100" class="kontakt-detail">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          07033 7080100
+        </a>
+        <a href="mailto:info@alexanderschinkel.com" class="kontakt-detail">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          info@alexanderschinkel.com
+        </a>
+        <a href="#" class="kontakt-detail" style="cursor:default; pointer-events:none;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Auf der Röte 7 · 75397 Simmozheim
+        </a>
+      </div>
+
+      <div class="kontakt-form reveal reveal-d1">
+        <div class="form-title">Termin buchen</div>
+        <!-- Calendly inline widget -->
+        <div class="calendly-inline-widget"
+             data-url="https://calendly.com/alexanderschinkel-info/30min?hide_gdpr_banner=1&primary_color=00b4c8"
+             style="min-width:280px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="https://oelex09.github.io/Schinkel-Consulting/logo_schinkel.png"
+         alt="Schinkel Consulting" />
+    <span>© 2026 Schinkel Consulting · Alexander Schinkel</span>
+    <span>
+      <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="agb.html">AGB</a>
+    </span>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Mobile menu toggle
+    const menuBtn = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-label', navLinks.classList.contains('open') ? 'Menü schließen' : 'Menü öffnen');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
