@@ -1,0 +1,35 @@
+DOMAIN: alexanderschinkel.com
+DNS-EINSTELLUNGEN FÜR GITHUB PAGES
+====================================
+
+SCHRITT 1 – IONOS
+------------------
+1. ionos.de → Login → "Domains & SSL"
+2. alexanderschinkel.com → "DNS" klicken
+3. Bestehende A-Einträge auf "@" löschen
+4. Folgende Einträge neu anlegen:
+
+   Typ     | Hostname | Wert
+   --------|----------|--------------------
+   CNAME   | www      | oelex09.github.io
+   A       | @        | 185.199.108.153
+   A       | @        | 185.199.109.153
+   A       | @        | 185.199.110.153
+   A       | @        | 185.199.111.153
+
+5. Speichern
+
+
+SCHRITT 2 – GITHUB
+-------------------
+1. github.com/Oelex09/Schinkel-Consulting/settings/pages öffnen
+2. Unter "Custom domain" eintragen: www.alexanderschinkel.com
+3. Speichern
+4. "Enforce HTTPS" aktivieren (Haken setzen)
+
+
+WARTEN
+-------
+DNS-Änderungen dauern 15 Minuten bis 24 Stunden.
+Danach ist die Website erreichbar unter:
+→ https://www.alexanderschinkel.com

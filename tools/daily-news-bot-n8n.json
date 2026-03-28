@@ -1,0 +1,205 @@
+{
+  "name": "🌍 Daily News Bot",
+  "nodes": [
+    {
+      "id": "node_tg_trigger",
+      "name": "Telegram: /news empfangen",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [200, 300],
+      "parameters": {
+        "updates": ["message"]
+      },
+      "credentials": {
+        "telegramApi": {
+          "id": "1",
+          "name": "Telegram Bot"
+        }
+      }
+    },
+    {
+      "id": "node_filter",
+      "name": "Ist /news?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [420, 300],
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.message.text }}",
+              "operation": "equal",
+              "value2": "/news"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "node_sources",
+      "name": "Quellen definieren",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [640, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const sources = [\n  { country: \"🇺🇸 USA\", name: \"New York Times\", url: \"https://rss.nytimes.com/services/xml/rss/nyt/World.xml\" },\n  { country: \"🇺🇸 USA\", name: \"Washington Post\", url: \"https://feeds.washingtonpost.com/rss/world\" },\n  { country: \"🇷🇺 Russland\", name: \"TASS\", url: \"https://tass.com/rss/v2.xml\" },\n  { country: \"🇷🇺 Russland\", name: \"RT\", url: \"https://www.rt.com/rss/news/\" },\n  { country: \"🇺🇦 Ukraine\", name: \"Ukrinform\", url: \"https://www.ukrinform.net/rss/block-lastnews\" },\n  { country: \"🇺🇦 Ukraine\", name: \"Kyiv Post\", url: \"https://www.kyivpost.com/rss\" },\n  { country: \"🇮🇷 Iran\", name: \"IRNA\", url: \"https://en.irna.ir/rss\" },\n  { country: \"🇮🇷 Iran\", name: \"Press TV\", url: \"https://www.presstv.ir/RSS\" },\n  { country: \"🇮🇶 Irak\", name: \"Rudaw\", url: \"https://www.rudaw.net/english/rss\" },\n  { country: \"🇮🇶 Irak\", name: \"Iraqi News\", url: \"https://www.iraqinews.com/feed/\" },\n  { country: \"🇹🇷 Türkei\", name: \"Anadolu Agency\", url: \"https://www.aa.com.tr/en/rss/default?cat=general\" },\n  { country: \"🇨🇳 China\", name: \"Xinhua\", url: \"http://www.xinhuanet.com/english/rss/worldnews.xml\" },\n  { country: \"🇨🇳 China\", name: \"CGTN\", url: \"https://www.cgtn.com/subscribe/rss/section/world.do\" },\n  { country: \"🇩🇪 Deutschland\", name: \"Tagesschau\", url: \"https://www.tagesschau.de/xml/rss2/\" },\n  { country: \"🇫🇷 Frankreich\", name: \"Le Monde\", url: \"https://www.lemonde.fr/rss/une.xml\" },\n  { country: \"🇮🇹 Italien\", name: \"ANSA\", url: \"https://www.ansa.it/english/news/general_news/index_rss.shtml\" },\n  { country: \"🇪🇸 Spanien\", name: \"El País\", url: \"https://feeds.elpais.com/mrss-s/pages/ep/site/english.elpais.com/portada\" },\n  { country: \"🇵🇱 Polen\", name: \"PAP\", url: \"https://www.pap.pl/aktualnosci/rss.xml\" },\n  { country: \"🇭🇺 Ungarn\", name: \"Index.hu\", url: \"https://index.hu/24ora/rss/\" },\n  { country: \"🇳🇱 Niederlande\", name: \"NOS\", url: \"https://feeds.nos.nl/nosnieuwsalgemeen\" },\n  { country: \"🇦🇹 Österreich\", name: \"ORF\", url: \"https://rss.orf.at/news.xml\" },\n  { country: \"🇨🇿 Tschechien\", name: \"iROZHLAS\", url: \"https://www.irozhlas.cz/rss/irozhlas/section/zpravy-domov\" },\n  { country: \"🇬🇷 Griechenland\", name: \"Ekathimerini\", url: \"https://www.ekathimerini.com/rss/\" },\n  { country: \"🇸🇪 Schweden\", name: \"SVT\", url: \"https://www.svt.se/nyheter/rss.xml\" },\n  { country: \"🇧🇪 Belgien\", name: \"RTBF\", url: \"https://www.rtbf.be/info/rss\" },\n  { country: \"🇷🇴 Rumänien\", name: \"Digi24\", url: \"https://www.digi24.ro/rss\" },\n  { country: \"🇫🇮 Finnland\", name: \"YLE\", url: \"https://feeds.yle.fi/uutiset/v1/majorHeadlines/YLE_UUTISET.rss\" },\n  { country: \"🇵🇹 Portugal\", name: \"Público\", url: \"https://www.publico.pt/api/rss\" }\n];\nreturn sources.map(s => ({ json: s }));"
+      }
+    },
+    {
+      "id": "node_http",
+      "name": "RSS Feed abrufen",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [860, 200],
+      "continueOnFail": true,
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.url }}",
+        "options": {
+          "timeout": 10000,
+          "response": {
+            "response": {
+              "responseFormat": "text",
+              "outputPropertyName": "rssXml"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "node_merge",
+      "name": "Zusammenführen",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [1080, 300],
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      }
+    },
+    {
+      "id": "node_parse",
+      "name": "Artikel parsen",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1300, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const allItems = $input.all();\nconst results = [];\n\nfunction cleanText(text) {\n  if (!text) return '';\n  return text\n    .replace(/<[^>]+>/g, '')\n    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')\n    .replace(/&quot;/g, '\"').replace(/&#39;/g, \"'\").replace(/&nbsp;/g, ' ')\n    .replace(/\\s+/g, ' ').trim();\n}\n\nfunction parseRSS(xml) {\n  const items = [];\n  const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);\n  const itemPattern = /<item[\\s>]([\\s\\S]*?)<\\/item>/g;\n  let match;\n  while ((match = itemPattern.exec(xml)) !== null) {\n    const itemXml = match[1];\n    const titleM = itemXml.match(/<title>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?<\\/title>/);\n    const title = cleanText(titleM?.[1] || '');\n    if (!title) continue;\n    const descM = itemXml.match(/<description>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?<\\/description>/);\n    const description = cleanText(descM?.[1] || '').substring(0, 280);\n    const dateM = itemXml.match(/<pubDate>([\\s\\S]*?)<\\/pubDate>/) ||\n                  itemXml.match(/<dc:date>([\\s\\S]*?)<\\/dc:date>/);\n    const pubDate = (dateM?.[1] || '').trim();\n    if (pubDate) {\n      const d = new Date(pubDate);\n      if (!isNaN(d) && d < oneDayAgo) continue;\n    }\n    items.push({ title, description });\n    if (items.length >= 3) break;\n  }\n  return items;\n}\n\nfor (const item of allItems) {\n  const xml = typeof item.json.rssXml === 'string' ? item.json.rssXml : '';\n  const country = item.json.country || 'Unbekannt';\n  const name = item.json.name || 'Unbekannt';\n  if (!xml || xml.length < 50) continue;\n  const articles = parseRSS(xml);\n  if (articles.length === 0) continue;\n  results.push({ json: { country, name, articles } });\n}\n\nreturn results;"
+      }
+    },
+    {
+      "id": "node_group",
+      "name": "Nach Land gruppieren",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1520, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const allItems = $input.all();\nconst grouped = {};\n\nfor (const item of allItems) {\n  const { country, name, articles } = item.json;\n  if (!country || !articles?.length) continue;\n  if (!grouped[country]) grouped[country] = { country, articles: [] };\n  for (const article of articles) {\n    grouped[country].articles.push({ source: name, ...article });\n  }\n}\n\nreturn Object.values(grouped).map(g => {\n  const list = g.articles\n    .map((a, i) => `${i + 1}. [${a.source}] ${a.title}${a.description ? '\\n   ' + a.description : ''}`)\n    .join('\\n\\n');\n  const prompt = `Du bist ein neutraler Nachrichtenredakteur.\\nFasse die folgenden Nachrichten aus ${g.country} auf Deutsch zusammen (3-4 Sätze, sachlich, keine Wertung, alle Sprachen übersetzen).\\n\\nNachrichten:\\n${list}`;\n  return { json: { country: g.country, prompt } };\n});"
+      }
+    },
+    {
+      "id": "node_openai",
+      "name": "GPT-4o Zusammenfassung",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1740, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer DEIN_OPENAI_API_KEY"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({ model: 'gpt-4o', messages: [{ role: 'user', content: $json.prompt }], max_tokens: 350, temperature: 0.3 }) }}"
+      }
+    },
+    {
+      "id": "node_format",
+      "name": "Nachricht formatieren",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1960, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const summaries = $input.all();\nconst countries = $('Nach Land gruppieren').all();\n\nconst today = new Date().toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });\nconst time = new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });\n\nconst header = `🌍 *Weltlage – ${today}*\\n\\n`;\nconst footer = `\\n_Quellen: Direkte Landesmedien • Stand ${time} Uhr_`;\n\nlet currentChunk = header;\nconst chunks = [];\nconst MAX_LEN = 3800;\n\nfor (let i = 0; i < summaries.length; i++) {\n  const country = countries[i]?.json?.country || '?';\n  const content = summaries[i]?.json?.choices?.[0]?.message?.content || 'Keine Daten verfügbar.';\n  const section = `*${country}*\\n${content}\\n\\n───────────────────\\n\\n`;\n  if ((currentChunk + section).length > MAX_LEN) {\n    chunks.push(currentChunk.trim());\n    currentChunk = section;\n  } else {\n    currentChunk += section;\n  }\n}\n\nif (currentChunk.trim()) chunks.push(currentChunk.trim() + footer);\n\nreturn chunks.map((chunk, i) => ({\n  json: { message: chunks.length > 1 ? chunk + `\\n_(Teil ${i + 1}/${chunks.length})_` : chunk }\n}));"
+      }
+    },
+    {
+      "id": "node_telegram",
+      "name": "Per Telegram senden",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [2180, 300],
+      "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "DEINE_TELEGRAM_CHAT_ID",
+        "text": "={{ $json.message }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "credentials": {
+        "telegramApi": {
+          "id": "1",
+          "name": "Telegram Bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram: /news empfangen": {
+      "main": [[{ "node": "Ist /news?", "type": "main", "index": 0 }]]
+    },
+    "Ist /news?": {
+      "main": [
+        [{ "node": "Quellen definieren", "type": "main", "index": 0 }],
+        []
+      ]
+    },
+    "Quellen definieren": {
+      "main": [[
+        { "node": "RSS Feed abrufen", "type": "main", "index": 0 },
+        { "node": "Zusammenführen", "type": "main", "index": 1 }
+      ]]
+    },
+    "RSS Feed abrufen": {
+      "main": [[{ "node": "Zusammenführen", "type": "main", "index": 0 }]]
+    },
+    "Zusammenführen": {
+      "main": [[{ "node": "Artikel parsen", "type": "main", "index": 0 }]]
+    },
+    "Artikel parsen": {
+      "main": [[{ "node": "Nach Land gruppieren", "type": "main", "index": 0 }]]
+    },
+    "Nach Land gruppieren": {
+      "main": [[{ "node": "GPT-4o Zusammenfassung", "type": "main", "index": 0 }]]
+    },
+    "GPT-4o Zusammenfassung": {
+      "main": [[{ "node": "Nachricht formatieren", "type": "main", "index": 0 }]]
+    },
+    "Nachricht formatieren": {
+      "main": [[{ "node": "Per Telegram senden", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
