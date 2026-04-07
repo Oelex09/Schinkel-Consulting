@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatisierung für Fliesenleger – Schinkel Consulting</title>
+  <link rel="icon" type="image/png" href="Icon_Google_Ads.png" />
+  <meta name="description" content="Fliesenmenge mit Verschnitt auf den Punkt berechnen. Nie wieder Nachbestellung. Praxiserprobte Automatisierung für Fliesenleger-Betriebe." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0d1f3c;
+      --navy-mid:  #162d55;
+      --teal:      #00b4c8;
+      --teal-pale: #e6f7fa;
+      --white:     #ffffff;
+      --bg:        #f5f6f8;
+      --ink:       #1a1f2e;
+      --ink-mid:   #4a5568;
+      --ink-soft:  #9aa3b2;
+      --line:      #e2e6ed;
+      --card:      #ffffff;
+      --red:       #e53e3e;
+      --orange:    #dd6b20;
+      --green:     #2f855a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(13,31,60,0.97);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.25);
+    }
+
+    .nav-logo img {
+      height: 44px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--teal); }
+
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-dropdown > a svg {
+      width: 12px; height: 12px;
+      stroke: rgba(255,255,255,0.75);
+      transition: stroke 0.2s, transform 0.2s;
+    }
+    .nav-dropdown:hover > a svg { stroke: var(--teal); transform: rotate(180deg); }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--navy);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 16px 0 8px;
+      min-width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      transform: translateX(-50%) translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+
+    .nav-dropdown:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      color: rgba(255,255,255,0.7) !important;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .dropdown-menu a:hover, .dropdown-menu a.active {
+      background: rgba(0,180,200,0.1);
+      color: var(--teal) !important;
+    }
+    .dropdown-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; }
+
+    .nav-cta {
+      background: var(--teal) !important;
+      color: var(--navy) !important;
+      padding: 10px 24px;
+      font-weight: 600 !important;
+      letter-spacing: 0.06em !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: #00cce0 !important; transform: translateY(-1px); }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .menu-toggle span { display: block; width: 24px; height: 1.5px; background: rgba(255,255,255,0.8); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      padding: 160px 56px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(0,180,200,0.08) 0%, transparent 65%);
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .breadcrumb a {
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .breadcrumb a:hover { color: var(--teal); }
+    .breadcrumb span { color: var(--teal); }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1.5px;
+      background: var(--teal);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .hero-title span { color: var(--teal); }
+
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 460px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-teal {
+      display: inline-block;
+      padding: 15px 36px;
+      background: var(--teal);
+      color: var(--navy);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.25s, transform 0.25s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-teal:hover { background: #00cce0; transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-block;
+      padding: 14px 36px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: border-color 0.25s, color 0.25s, transform 0.25s;
+    }
+    .btn-ghost:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
+    /* Hero stats box */
+    .hero-stats-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .hstat-val {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .hstat-val span { color: var(--teal); }
+
+    .hstat-label {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── PAIN SECTION ── */
+    .section { padding: 96px 56px; }
+    .section-light { background: var(--white); }
+    .section-bg { background: var(--bg); }
+    .section-navy { background: var(--navy); }
+
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--teal);
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .section-title-white { color: var(--white); }
+
+    .section-sub {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 56px;
+    }
+    .section-sub-white { color: rgba(255,255,255,0.6); }
+
+    /* Pain points */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .pain-card {
+      border-radius: 6px;
+      padding: 36px 32px;
+      border-left: 4px solid;
+      background: var(--card);
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pain-card.high { border-left-color: var(--red); }
+    .pain-card.mid  { border-left-color: var(--orange); }
+    .pain-card.low  { border-left-color: #68d391; }
+
+    .pain-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .pain-card.high .pain-badge { background: #fff5f5; color: var(--red); }
+    .pain-card.mid .pain-badge  { background: #fffaf0; color: var(--orange); }
+    .pain-card.low .pain-badge  { background: #f0fff4; color: var(--green); }
+
+    .pain-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .pain-text {
+      font-size: 0.86rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.8;
+    }
+
+    /* ── DEMO SECTION ── */
+    .demo-section {
+      background: var(--navy);
+      padding: 96px 56px;
+    }
+
+    .demo-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .demo-copy .section-label::before { background: var(--teal); }
+
+    .demo-copy .section-title { color: var(--white); }
+    .demo-copy .section-sub { color: rgba(255,255,255,0.6); margin-bottom: 32px; }
+
+    .demo-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .demo-feature-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(0,180,200,0.12);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .demo-feature-icon svg { color: var(--teal); }
+
+    .demo-feature-text strong {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+    .demo-feature-text span {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    /* Interactive Calculator */
+    .calc-widget {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+    }
+
+    .calc-header {
+      background: var(--teal);
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .calc-header-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+    }
+
+    .calc-header-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-left: 4px;
+    }
+
+    .calc-body { padding: 28px; }
+
+    .calc-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .calc-field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 6px;
+    }
+
+    .calc-field input, .calc-field select {
+      width: 100%;
+      padding: 11px 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1.5px solid var(--line);
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .calc-field input:focus, .calc-field select:focus {
+      border-color: var(--teal);
+    }
+
+    .calc-divider {
+      height: 1px;
+      background: var(--line);
+      margin: 20px 0;
+    }
+
+    .calc-subhead {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+    }
+
+    .btn-calc {
+      width: 100%;
+      padding: 14px;
+      background: var(--teal);
+      color: var(--navy);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-calc:hover { background: #00cce0; transform: translateY(-1px); }
+
+    .calc-result {
+      display: none;
+      margin-top: 20px;
+      background: var(--navy);
+      border-radius: 6px;
+      padding: 24px;
+    }
+    .calc-result.visible { display: block; }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .result-item {}
+    .result-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 4px;
+    }
+    .result-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+    .result-val span { color: var(--teal); font-size: 0.9rem; font-weight: 400; }
+
+    .result-note {
+      margin-top: 16px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.6;
+    }
+
+    /* ── SOLUTIONS SECTION ── */
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .solution-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 40px 36px;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .solution-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+      border-color: rgba(0,180,200,0.3);
+    }
+
+    .solution-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--teal-pale);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .solution-icon svg { color: var(--teal); }
+
+    .solution-num {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .solution-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .solution-text {
+      font-size: 0.86rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .solution-saving {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--green);
+      background: #f0fff4;
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── ROI SECTION ── */
+    .roi-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 40px;
+    }
+
+    .roi-table th {
+      text-align: left;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      padding: 0 20px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .roi-table td {
+      padding: 18px 20px;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      vertical-align: top;
+    }
+
+    .roi-table tr:last-child td {
+      border-bottom: none;
+      font-weight: 700;
+      color: var(--white);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px;
+    }
+
+    .roi-table td:last-child { color: var(--teal); font-weight: 600; }
+    .roi-table tr:last-child td:last-child { color: var(--teal); font-size: 1.1rem; }
+
+    .roi-note {
+      margin-top: 24px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .testimonial-stars {
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      color: #f5c518;
+      letter-spacing: 4px;
+    }
+
+    .testimonial-quote {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      font-style: italic;
+      margin-bottom: 36px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .author-avatar {
+      width: 48px; height: 48px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+
+    .author-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .author-role {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--ink-soft);
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--navy);
+      padding: 96px 56px;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .cta-section h2 span { color: var(--teal); }
+
+    .cta-section p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      max-width: 500px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+
+    /* Calendly embed */
+    .calendly-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+    footer img { height: 36px; filter: brightness(0) invert(1); opacity: 0.7; }
+    footer span { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.4); }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--teal); }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s, transform 0.65s;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .demo-inner { grid-template-columns: 1fr; gap: 48px; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .solutions-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--navy);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.1rem; }
+      .dropdown-menu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 8px 0 0;
+        min-width: auto;
+        text-align: center;
+      }
+      .dropdown-menu a { font-size: 0.9rem !important; padding: 6px 12px; }
+      .dropdown-divider { display: none; }
+      .menu-toggle { display: flex; z-index: 101; position: relative; }
+      .hero { padding: 120px 24px 72px; }
+      .hero-stats-box { grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px; }
+      .section { padding: 72px 24px; }
+      .demo-section { padding: 72px 24px; }
+      .calc-row { grid-template-columns: 1fr; }
+      .result-grid { grid-template-columns: 1fr 1fr; }
+      .roi-table { font-size: 0.82rem; }
+      .cta-section { padding: 72px 24px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="https://oelex09.github.io/Schinkel-Consulting/logo_schinkel.png" alt="Schinkel Consulting" />
+    </a>
+    <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a href="gewerke.html">
+          Gewerke
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="rohbau.html">Rohbau</a>
+          <a href="maler.html">Maler</a>
+          <a href="stukkateur.html">Stukkateur</a>
+          <a href="elektro.html">Elektro</a>
+          <a href="heizung.html">Heizung / SHK</a>
+          <div class="dropdown-divider"></div>
+          <a href="fliesen.html" class="active">Fliesen</a>
+          <a href="dachdecker.html">Zimmermann / Dachdecker</a>
+          <a href="fensterbau.html">Fensterbau</a>
+          <a href="gartenbau.html">Gartenbau</a>
+        </div>
+      </li>
+      <li><a href="index.html#ueber">Über mich</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+      <li><a href="zeitaudit.html">Zeitaudit</a></li>
+      <li><a href="index.html#kontakt" class="nav-cta">Gespräch vereinbaren</a></li>
+    </ul>
+    <button class="menu-toggle" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="breadcrumb" style="max-width:1200px;margin:0 auto 32px;position:relative;">
+      <a href="index.html">Startseite</a>
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="gewerke.html">Gewerke</a>
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      <span>Fliesen</span>
+    </div>
+
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">Fliesen</div>
+        <h1 class="hero-title">
+          Nie wieder zu wenig –<br />und <span>nie wieder zu viel</span> bestellt.
+        </h1>
+        <p class="hero-sub">
+          Fläche, Fliesengröße, Verschnitt und Verlegemuster – der Rechner gibt Ihnen sofort Stückzahl, Klebermenge und Fugenmasse aus. Kein Schätzen, kein Nachbestellen.
+        </p>
+        <div class="hero-actions">
+          <a href="#demo" class="btn-teal">Demo ausprobieren</a>
+          <a href="#kontakt" class="btn-ghost">Erstgespräch buchen</a>
+        </div>
+      </div>
+
+      <div class="hero-stats-box">
+        <div>
+          <div class="hstat-val">~<span>2</span> Std</div>
+          <div class="hstat-label">pro Auftrag gespart</div>
+        </div>
+        <div>
+          <div class="hstat-val"><span>0</span> €</div>
+          <div class="hstat-label">Startkosten</div>
+        </div>
+        <div>
+          <div class="hstat-val"><span>4</span> Mon</div>
+          <div class="hstat-label">Amortisation</div>
+        </div>
+        <div>
+          <div class="hstat-val">100<span>%</span></div>
+          <div class="hstat-label">Auf Ihr Gewerk zugeschnitten</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAIN POINTS -->
+  <section class="section section-bg" id="probleme">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Die größten Zeitfresser</div>
+        <h2 class="section-title">Was Fliesenleger-Betriebe täglich ausbremst.</h2>
+        <p class="section-sub">Nicht als Theorie – sondern so, wie es in der Praxis wirklich abläuft.</p>
+      </div>
+
+      <div class="pain-grid">
+        <div class="pain-card high reveal reveal-d1">
+          <div class="pain-badge">Hoher Handlungsdruck</div>
+          <h3 class="pain-title">Fliesenmenge falsch berechnet – Nachbestellung oder Rücklauf</h3>
+          <p class="pain-text">Zu wenig bestellt: teurer Expressversand, Baustelle steht still. Zu viel: aufwändige Retoure. Beide Fehler kosten Zeit und Marge.</p>
+        </div>
+        <div class="pain-card high reveal reveal-d2">
+          <div class="pain-badge">Hoher Handlungsdruck</div>
+          <h3 class="pain-title">Verschnitt und Verlegemuster werden unterschätzt</h3>
+          <p class="pain-text">Diagonal verlegt oder Fischgrätmuster bedeutet bis zu 20 % mehr Verschnitt. Das wird oft erst beim Verlegen bemerkt – wenn es zu spät ist.</p>
+        </div>
+        <div class="pain-card mid reveal reveal-d3">
+          <div class="pain-badge">Mittlerer Handlungsdruck</div>
+          <h3 class="pain-title">Fugenfarbe und Materialdetails werden nicht dokumentiert</h3>
+          <p class="pain-text">Welche Fugenfarbe, welcher Kleber, welche Charge? Ohne Dokumentation kann bei Nacharbeiten oder Gewährleistungsfällen keine Farbgleichheit garantiert werden.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section class="demo-section" id="demo">
+    <div class="demo-inner">
+      <div class="demo-copy reveal">
+        <div class="section-label" style="color:var(--teal);">Interaktive Demo</div>
+        <h2 class="section-title section-title-white">So sieht Ihr Fliesenrechner aus.</h2>
+        <p class="section-sub section-sub-white">
+          Fläche und Fliesengröße eingeben, Verlegemuster und Verschnitt wählen – Sie erhalten Stückzahl, Kleberbedarf und Fugenmasse auf einen Blick.
+        </p>
+
+        <div class="demo-feature">
+          <div class="demo-feature-icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="demo-feature-text">
+            <strong>Verschnitt automatisch</strong>
+            <span>Standard, Diagonal oder Fischgrätmuster – der richtige Zuschlag wird automatisch angewendet.</span>
+          </div>
+        </div>
+
+        <div class="demo-feature">
+          <div class="demo-feature-icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="demo-feature-text">
+            <strong>Kleber und Fugenmasse</strong>
+            <span>Bedarf in kg und Eimern, kalibriert auf Ihr Produkt.</span>
+          </div>
+        </div>
+
+        <div class="demo-feature">
+          <div class="demo-feature-icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="demo-feature-text">
+            <strong>Dokumentation</strong>
+            <span>Alle Werte speicherbar und ins Angebot übernehmbar.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Calculator -->
+      <div class="reveal reveal-d1" id="rechner-anchor">
+        <div class="calc-widget">
+          <div class="calc-header">
+            <div class="calc-header-dot"></div>
+            <div class="calc-header-dot"></div>
+            <div class="calc-header-dot"></div>
+            <span class="calc-header-title">Fliesenrechner</span>
+          </div>
+          <div class="calc-body">
+
+            <div class="calc-subhead">Fläche &amp; Fliesengröße</div>
+            <div class="calc-row">
+              <div class="calc-field">
+                <label>Fläche (m²)</label>
+                <input type="number" id="flaeche" placeholder="20" step="0.5" min="0" />
+              </div>
+              <div class="calc-field">
+                <label>Fliesenlänge (cm)</label>
+                <input type="number" id="fliesen-laenge" placeholder="60" value="60" step="1" min="1" />
+              </div>
+            </div>
+            <div class="calc-row">
+              <div class="calc-field">
+                <label>Fliesenbreite (cm)</label>
+                <input type="number" id="fliesen-breite" placeholder="60" value="60" step="1" min="1" />
+              </div>
+              <div class="calc-field">
+                <label>Fugenbreite</label>
+                <select id="fugenbreite">
+                  <option value="2">2 mm</option>
+                  <option value="3" selected>3 mm</option>
+                  <option value="5">5 mm</option>
+                  <option value="8">8 mm</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="calc-divider"></div>
+            <div class="calc-subhead">Verlegemuster</div>
+            <div class="calc-row" style="grid-template-columns: 1fr;">
+              <div class="calc-field">
+                <label>Verlegemuster</label>
+                <select id="verlegemuster">
+                  <option value="10">Gerades Muster +10%</option>
+                  <option value="12">Versetzt +12%</option>
+                  <option value="15">Diagonal +15%</option>
+                  <option value="20">Fischgrät +20%</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn-calc" onclick="berechnenFliesen()">Fliesenmenge berechnen →</button>
+
+            <div class="calc-result" id="ergebnis">
+              <div class="result-grid">
+                <div class="result-item">
+                  <div class="result-label">Nettofläche</div>
+                  <div class="result-val" id="res-netto">– <span>m²</span></div>
+                </div>
+                <div class="result-item">
+                  <div class="result-label">Verschnittfaktor</div>
+                  <div class="result-val" id="res-verschnitt">– <span>%</span></div>
+                </div>
+                <div class="result-item">
+                  <div class="result-label">Bestellmenge</div>
+                  <div class="result-val" id="res-bestellung">– <span>m²</span></div>
+                </div>
+                <div class="result-item">
+                  <div class="result-label">Fliesenanzahl</div>
+                  <div class="result-val" id="res-anzahl">– <span>Stk</span></div>
+                </div>
+                <div class="result-item">
+                  <div class="result-label">Kleber (C2 Flexkleber)</div>
+                  <div class="result-val" id="res-kleber">– <span>Sack 25 kg</span></div>
+                </div>
+                <div class="result-item">
+                  <div class="result-label">Fugenmasse</div>
+                  <div class="result-val" id="res-fuge">– <span>kg</span></div>
+                </div>
+              </div>
+              <p class="result-note">Richtwert auf Basis Ihrer Eingaben. Ihr persönlicher Rechner wird auf Ihre Produkte und Verbrauchswerte kalibriert.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTIONS -->
+  <section class="section section-light" id="loesungen">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Was wir für Sie bauen</div>
+        <h2 class="section-title">Vier Module.<br />Ein ruhigerer Abend.</h2>
+        <p class="section-sub">Jedes Modul löst ein konkretes Problem – und lässt sich einzeln oder als Paket einsetzen.</p>
+      </div>
+
+      <div class="solutions-grid">
+        <div class="solution-card reveal reveal-d1">
+          <div class="solution-icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div class="solution-num">01 · Modul</div>
+          <h3 class="solution-title">Fliesenrechner</h3>
+          <p class="solution-text">Fläche × Fliesengröße × Muster = exakte Bestellmenge inkl. Verschnitt. Kein Schätzen, kein Nachbestellen.</p>
+          <span class="solution-saving">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            ~2 Std/Auftrag gespart
+          </span>
+        </div>
+
+        <div class="solution-card reveal reveal-d2">
+          <div class="solution-icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="solution-num">02 · Modul</div>
+          <h3 class="solution-title">Kleber- &amp; Fugenmassen-Kalkulation</h3>
+          <p class="solution-text">Kleberbedarf und Fugenmasse automatisch berechnet, kalibriert auf Ihre Produkte (Mapei, Ardex, Weber).</p>
+          <span class="solution-saving">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            ~1 Std/Auftrag gespart
+          </span>
+        </div>
+
+        <div class="solution-card reveal reveal-d1">
+          <div class="solution-icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </div>
+          <div class="solution-num">03 · Modul</div>
+          <h3 class="solution-title">Materialprotokoll</h3>
+          <p class="solution-text">Fugenfarbe, Klebercharge, Verlegedatum automatisch dokumentiert. Bei Nacharbeiten oder Gewährleistung sofort abrufbar. Rechtssicherheit ohne Mehraufwand.</p>
+          <span class="solution-saving">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Rechtssicherheit + Zeitersparnis
+          </span>
+        </div>
+
+        <div class="solution-card reveal reveal-d2">
+          <div class="solution-icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div class="solution-num">04 · Modul</div>
+          <h3 class="solution-title">Angebotsgenerator Fliesen</h3>
+          <p class="solution-text">Aus Aufmaß und Materialauswahl wird ein professionelles Angebot erstellt. Mit Position für Verlegung, Material und Fugenarbeit.</p>
+          <span class="solution-saving">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            ~5 Std/Monat gespart
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI -->
+  <section class="section section-navy" id="roi">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label" style="color:var(--teal);">Ihr Nutzen in Zahlen</div>
+        <h2 class="section-title section-title-white">Was das wirklich wert ist.</h2>
+        <p class="section-sub section-sub-white">Konservativ geschätzt – auf Basis von Branchenrichtwerten. Ihr Betrieb wird im Gespräch korrigieren.</p>
+      </div>
+
+      <table class="roi-table reveal reveal-d1">
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>Ersparnis / Monat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Zeitersparnis Kalkulation &amp; Angebot<br /><small style="color:rgba(255,255,255,0.35);">8 Std × 52 €/Std</small></td>
+            <td>416 €</td>
+          </tr>
+          <tr>
+            <td>Materialersparnis durch präzise Berechnung</td>
+            <td>~200 €</td>
+          </tr>
+          <tr>
+            <td>Vermiedene Expresslieferungen</td>
+            <td>~150 €</td>
+          </tr>
+          <tr>
+            <td>Zeitersparnis Dokumentation<br /><small style="color:rgba(255,255,255,0.35);">4 Std × 44 €/Std</small></td>
+            <td>176 €</td>
+          </tr>
+          <tr>
+            <td><strong>Gesamtnutzen / Monat</strong></td>
+            <td><strong>~942 €</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="roi-note reveal">* Investition Basis-Paket ab 5.000 € → Amortisation in ~5 Monaten.</p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="section section-light">
+    <div class="testimonial-wrap reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote">„Die Zusammenarbeit war von Anfang bis Ende sehr angenehm. Alles wurde klar erklärt, sehr professionell durchgeführt und ich habe das erreicht, was ich mir gewünscht habe. Die Kommunikation war jederzeit freundlich und zuverlässig. Ich bin insgesamt sehr zufrieden und kann den Service weiterempfehlen!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">VB</div>
+        <div>
+          <div class="author-name">Vitor Batista</div>
+          <div class="author-role">Abteilungsleiter · 4,9 ★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / KONTAKT -->
+  <section class="cta-section" id="kontakt">
+    <h2 class="reveal">Schluss mit <span>Schätzen und Nachbestellen?</span></h2>
+    <p class="reveal reveal-d1">Ich zeige Ihnen den Fliesenrechner live – auf Ihrem Handy, mit Ihren Produkten, in 30 Minuten.</p>
+    <div class="calendly-wrap reveal reveal-d2">
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/alexanderschinkel-info/30min?hide_gdpr_banner=1&primary_color=00b4c8"
+           style="min-width:280px;height:700px;"></div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="https://oelex09.github.io/Schinkel-Consulting/logo_schinkel.png" alt="Schinkel Consulting" />
+    <span>© 2026 Schinkel Consulting · Alexander Schinkel</span>
+    <span>
+      <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="agb.html">AGB</a>
+    </span>
+  </footer>
+
+  <script>
+    // Nav mobile
+    const menuBtn = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-label', navLinks.classList.contains('open') ? 'Menü schließen' : 'Menü öffnen');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Fliesenrechner
+    function berechnenFliesen() {
+      const nettoFlaeche = parseFloat(document.getElementById('flaeche').value) || 0;
+      const laengeCm = parseFloat(document.getElementById('fliesen-laenge').value) || 60;
+      const breiteCm = parseFloat(document.getElementById('fliesen-breite').value) || 60;
+      const verschnittProzent = parseInt(document.getElementById('verlegemuster').value);
+
+      if (nettoFlaeche <= 0) {
+        alert('Bitte eine Fläche in m² eingeben.');
+        return;
+      }
+
+      // Berechnungen
+      const bestellmenge = nettoFlaeche * (1 + verschnittProzent / 100);
+      const fliesenFlaeche = (laengeCm / 100) * (breiteCm / 100); // m² pro Fliese
+      const anzahl = Math.ceil(bestellmenge / fliesenFlaeche);
+
+      // Kleber: ~3,5 kg/m², 25-kg-Säcke
+      const kleberKg = 3.5 * bestellmenge;
+      const kleberSaecke = Math.ceil(kleberKg / 25);
+
+      // Fugenmasse: ~0,3 kg/m² auf Nettofläche
+      const fugeKg = (0.3 * nettoFlaeche).toFixed(1);
+
+      document.getElementById('res-netto').innerHTML = nettoFlaeche.toFixed(1) + ' <span>m²</span>';
+      document.getElementById('res-verschnitt').innerHTML = verschnittProzent + ' <span>%</span>';
+      document.getElementById('res-bestellung').innerHTML = bestellmenge.toFixed(1) + ' <span>m²</span>';
+      document.getElementById('res-anzahl').innerHTML = anzahl.toLocaleString('de-DE') + ' <span>Stk</span>';
+      document.getElementById('res-kleber').innerHTML = kleberSaecke + ' <span>Sack 25 kg</span>';
+      document.getElementById('res-fuge').innerHTML = fugeKg + ' <span>kg</span>';
+
+      const result = document.getElementById('ergebnis');
+      result.classList.add('visible');
+      result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  </script>
+
+</body>
+</html>

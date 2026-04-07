@@ -84,6 +84,68 @@
 
     .nav-links a:hover { color: var(--teal); }
 
+    /* Dropdown */
+    .nav-dropdown { position: relative; }
+
+    .nav-dropdown > a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-dropdown > a svg {
+      width: 12px; height: 12px;
+      stroke: rgba(255,255,255,0.75);
+      transition: stroke 0.2s, transform 0.2s;
+    }
+
+    .nav-dropdown:hover > a svg { stroke: var(--teal); transform: rotate(180deg); }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      background: var(--navy);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 16px 0 8px;
+      min-width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+
+    .nav-dropdown:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      color: rgba(255,255,255,0.7) !important;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(0,180,200,0.1);
+      color: var(--teal) !important;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 6px 0;
+    }
+
     .nav-cta {
       background: var(--teal) !important;
       color: var(--navy) !important;
@@ -110,7 +172,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('Bildschirmfoto%202026-03-12%20um%2012.08.33.png');
+      background-image: url('header_schinkel.png');
       background-size: cover;
       background-position: center 20%;
       background-repeat: no-repeat;
@@ -765,6 +827,156 @@
       .hero-stats { grid-template-columns: 1fr; gap: 0; }
       .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 16px 24px; }
       .hero-stat:last-child { border-bottom: none; }
+      .gewerke-grid { grid-template-columns: 1fr 1fr; }
+      .zeitaudit-strip { padding: 72px 24px; }
+      .zeitaudit-inner { flex-direction: column; gap: 40px; text-align: center; align-items: center; }
+    }
+  </style>
+
+  <style>
+    /* ── GEWERKE OVERVIEW ── */
+    .gewerke-section {
+      padding: 100px 56px;
+      background: var(--white);
+    }
+    .gewerke-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 64px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .gewerke-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .gewerke-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 28px 24px;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .gewerke-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--teal);
+      transition: width 0.3s;
+    }
+    .gewerke-card:hover {
+      border-color: var(--teal);
+      background: var(--teal-pale);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0,180,200,0.12);
+    }
+    .gewerke-card:hover::after { width: 100%; }
+    .gewerke-icon {
+      width: 44px; height: 44px;
+      background: var(--navy);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .gewerke-icon svg { color: var(--teal); }
+    .gewerke-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .gewerke-card-desc {
+      font-size: 0.82rem;
+      color: var(--ink-mid);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+    .gewerke-card-arrow {
+      margin-top: auto;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .gewerke-card:hover .gewerke-card-arrow { opacity: 1; }
+
+    /* ── ZEITAUDIT TEASER ── */
+    .zeitaudit-strip {
+      background: var(--navy);
+      padding: 100px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .zeitaudit-strip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,180,200,0.1) 0%, transparent 65%);
+    }
+    .zeitaudit-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 64px;
+      position: relative;
+    }
+    .zeitaudit-content { flex: 1; }
+    .zeitaudit-kpis {
+      display: flex;
+      gap: 0;
+      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .zeitaudit-kpi {
+      padding: 28px 32px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .zeitaudit-kpi:last-child { border-right: none; }
+    .zeitaudit-kpi-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .zeitaudit-kpi-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-top: 6px;
+    }
+    @media (max-width: 960px) {
+      .gewerke-header { grid-template-columns: 1fr; gap: 24px; }
+      .zeitaudit-kpis { display: none; }
+    }
+    @media (max-width: 768px) {
+      .gewerke-section { padding: 72px 24px; }
     }
   </style>
 </head>
@@ -777,7 +989,27 @@
            alt="Schinkel Consulting" />
     </a>
     <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a href="gewerke.html">
+          Gewerke
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="rohbau.html">Rohbau</a>
+          <a href="maler.html">Maler</a>
+          <a href="stukkateur.html">Stukkateur</a>
+          <a href="elektro.html">Elektro</a>
+          <a href="heizung.html">Heizung / SHK</a>
+          <div class="dropdown-divider"></div>
+          <a href="fliesen.html">Fliesen</a>
+          <a href="dachdecker.html">Zimmermann / Dachdecker</a>
+          <a href="fensterbau.html">Fensterbau</a>
+          <a href="gartenbau.html">Gartenbau</a>
+        </div>
+      </li>
       <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#gewerke">Gewerke</a></li>
+      <li><a href="zeitaudit.html">Zeitaudit</a></li>
       <li><a href="#ueber">Über mich</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
       <li><a href="#kontakt" class="nav-cta">Gespräch vereinbaren</a></li>
@@ -900,6 +1132,130 @@
     </div>
   </section>
 
+  <!-- GEWERKE OVERVIEW -->
+  <section class="gewerke-section" id="gewerke">
+    <div class="gewerke-header">
+      <div class="reveal">
+        <div class="section-label">Branchenlösungen</div>
+        <h2 class="section-title">Lösungen für<br />Ihr Gewerk.</h2>
+      </div>
+      <p class="section-sub reveal reveal-d1">
+        Praxiserprobte Automatisierungen – speziell zugeschnitten auf die Abläufe und Herausforderungen Ihres Handwerks.
+      </p>
+    </div>
+
+    <div class="gewerke-grid">
+      <a href="rohbau.html" class="gewerke-card reveal">
+        <div class="gewerke-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <div class="gewerke-card-title">Rohbau</div>
+        <div class="gewerke-card-desc">Bautagebuch, Aufmaß, Stundenzettel und Subunternehmer-Koordination – vollständig automatisiert.</div>
+        <div class="gewerke-card-arrow">Mehr erfahren →</div>
+      </a>
+
+      <a href="maler.html" class="gewerke-card reveal reveal-d1">
+        <div class="gewerke-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 0 0-3-3Z"/><path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/><path d="M14.5 17.5 4.5 15"/></svg>
+        </div>
+        <div class="gewerke-card-title">Maler</div>
+        <div class="gewerke-card-desc">Angebote, Aufmaß und Kundenkommunikation digital – ohne doppelte Eingaben und Papierchaos.</div>
+        <div class="gewerke-card-arrow">Mehr erfahren →</div>
+      </a>
+
+      <a href="stukkateur.html" class="gewerke-card reveal reveal-d2">
+        <div class="gewerke-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m14.5 12.5-8 8a2.12 2.12 0 0 1-3-3l8-8"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/></svg>
+        </div>
+        <div class="gewerke-card-title">Stukkateur</div>
+        <div class="gewerke-card-desc">Von der Angebotsanfrage bis zur Rechnung – klare Prozesse, die im Büro und auf der Baustelle greifen.</div>
+        <div class="gewerke-card-arrow">Mehr erfahren →</div>
+      </a>
+
+      <a href="elektro.html" class="gewerke-card reveal">
+        <div class="gewerke-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="gewerke-card-title">Elektro</div>
+        <div class="gewerke-card-desc">Revisionssichere Dokumentation, automatische Prüfprotokolle und digitale Wartungsplanung.</div>
+        <div class="gewerke-card-arrow">Mehr erfahren →</div>
+      </a>
+
+      <a href="heizung.html" class="gewerke-card reveal reveal-d1">
+        <div class="gewerke-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+        </div>
+        <div class="gewerke-card-title">Heizung / SHK</div>
+        <div class="gewerke-card-desc">Wartungsintervalle, Kundenkorrespondenz und Materialdisposition automatisch im Griff.</div>
+        <div class="gewerke-card-arrow">Mehr erfahren →</div>
+      </a>
+
+      <a href="fliesen.html" class="gewerke-card reveal reveal-d2">
+        <div class="gewerke-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <div class="gewerke-card-title">Fliesen</div>
+        <div class="gewerke-card-desc">Aufmaß digital erfassen, Materialmengen kalkulieren und Angebote automatisch erstellen.</div>
+        <div class="gewerke-card-arrow">Mehr erfahren →</div>
+      </a>
+
+      <a href="dachdecker.html" class="gewerke-card reveal">
+        <div class="gewerke-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="gewerke-card-title">Zimmermann / Dachdecker</div>
+        <div class="gewerke-card-desc">Aufmaß, Materialbestellung und Kundenberichte digital – für mehr Zeit auf dem Dach statt im Büro.</div>
+        <div class="gewerke-card-arrow">Mehr erfahren →</div>
+      </a>
+
+      <a href="fensterbau.html" class="gewerke-card reveal reveal-d1">
+        <div class="gewerke-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+        </div>
+        <div class="gewerke-card-title">Fensterbau</div>
+        <div class="gewerke-card-desc">Maßkonfigurator, Auftragsabwicklung und Montagetermine nahtlos in einem digitalen Workflow.</div>
+        <div class="gewerke-card-arrow">Mehr erfahren →</div>
+      </a>
+
+      <a href="gartenbau.html" class="gewerke-card reveal reveal-d2">
+        <div class="gewerke-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22V12M12 12C12 12 7 10 7 6a5 5 0 0 1 10 0c0 4-5 6-5 6Z"/><path d="M12 12c0 0-4 1.5-4 5"/></svg>
+        </div>
+        <div class="gewerke-card-title">Gartenbau</div>
+        <div class="gewerke-card-desc">Saisonale Planung, Pflegeverträge und Kundenkorrespondenz automatisiert – für mehr Zeit draußen.</div>
+        <div class="gewerke-card-arrow">Mehr erfahren →</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ZEITAUDIT TEASER -->
+  <div class="zeitaudit-strip">
+    <div class="zeitaudit-inner">
+      <div class="zeitaudit-content">
+        <div class="section-label" style="color:var(--teal);">Kostenloser Schnell-Check</div>
+        <h2 class="section-title" style="color:var(--white);margin-bottom:20px;">Wie viel Zeit verliert<br />Ihr Betrieb täglich?</h2>
+        <p style="font-size:0.95rem;color:rgba(255,255,255,0.6);max-width:480px;line-height:1.8;font-weight:300;margin-bottom:36px;">
+          In 5 Minuten sehen Sie schwarz auf weiß, wie viel Geld durch manuelle Prozesse verloren geht — mit konkreter ROI-Kalkulation und personalisierten Automatisierungsvorschlägen.
+        </p>
+        <a href="zeitaudit.html" class="btn-teal" style="display:inline-block;">Jetzt Zeitaudit starten →</a>
+      </div>
+      <div class="zeitaudit-kpis">
+        <div class="zeitaudit-kpi">
+          <div class="zeitaudit-kpi-value">8 Std.</div>
+          <div class="zeitaudit-kpi-label">Verlust / Woche</div>
+        </div>
+        <div class="zeitaudit-kpi">
+          <div class="zeitaudit-kpi-value">18.720 €</div>
+          <div class="zeitaudit-kpi-label">Kosten / Jahr</div>
+        </div>
+        <div class="zeitaudit-kpi">
+          <div class="zeitaudit-kpi-value">5 Min.</div>
+          <div class="zeitaudit-kpi-label">für Ihr Ergebnis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="divider"></div>
 
   <!-- ÜBER -->
@@ -996,7 +1352,7 @@
           <div class="author-avatar">JH</div>
           <div>
             <div class="author-name">Jessica Heid</div>
-            <div class="author-role">Pflegerin</div>
+            <div class="author-role">Raumausstatterin</div>
           </div>
         </div>
       </div>

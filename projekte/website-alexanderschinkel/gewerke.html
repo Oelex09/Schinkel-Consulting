@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lösungen nach Gewerk – Schinkel Consulting</title>
+  <link rel="icon" type="image/png" href="Icon_Google_Ads.png" />
+  <meta name="description" content="Automatisierungslösungen speziell für Ihr Gewerk – Rohbau, Maler, Elektro, Heizung und mehr. Praxiserprobt, sofort einsetzbar." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0d1f3c;
+      --navy-mid:  #162d55;
+      --blue:      #1a4175;
+      --teal:      #00b4c8;
+      --teal-pale: #e6f7fa;
+      --white:     #ffffff;
+      --bg:        #f5f6f8;
+      --ink:       #1a1f2e;
+      --ink-mid:   #4a5568;
+      --ink-soft:  #9aa3b2;
+      --line:      #e2e6ed;
+      --card:      #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(13,31,60,0.97);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.25);
+    }
+
+    .nav-logo img {
+      height: 44px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--teal); }
+
+    /* Dropdown */
+    .nav-dropdown { position: relative; }
+
+    .nav-dropdown > a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-dropdown > a svg {
+      width: 12px; height: 12px;
+      stroke: rgba(255,255,255,0.75);
+      transition: stroke 0.2s, transform 0.2s;
+    }
+
+    .nav-dropdown:hover > a svg { stroke: var(--teal); transform: rotate(180deg); }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--navy);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 16px 0 8px;
+      min-width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      transform: translateX(-50%) translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+
+    .nav-dropdown:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      color: rgba(255,255,255,0.7) !important;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(0,180,200,0.1);
+      color: var(--teal) !important;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 6px 0;
+    }
+
+    .nav-cta {
+      background: var(--teal) !important;
+      color: var(--navy) !important;
+      padding: 10px 24px;
+      font-weight: 600 !important;
+      letter-spacing: 0.06em !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: #00cce0 !important;
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .menu-toggle span {
+      display: block; width: 24px; height: 1.5px;
+      background: rgba(255,255,255,0.8);
+    }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: var(--navy);
+      padding: 160px 56px 96px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0,180,200,0.12) 0%, transparent 70%);
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .breadcrumb a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover { color: var(--teal); }
+    .breadcrumb span { color: var(--teal); }
+
+    .page-hero-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+    }
+
+    .page-hero-label::before,
+    .page-hero-label::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1.5px;
+      background: var(--teal);
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .page-hero h1 span { color: var(--teal); }
+
+    .page-hero p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.8;
+      position: relative;
+    }
+
+    /* ── GEWERKE GRID ── */
+    .gewerke-section {
+      padding: 96px 56px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .gewerke-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .gewerk-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 48px 40px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .gewerk-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s;
+    }
+
+    .gewerk-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.10);
+      border-color: rgba(0,180,200,0.3);
+    }
+
+    .gewerk-card:hover::after { transform: scaleX(1); }
+
+    .gewerk-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--teal-pale);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      transition: background 0.3s;
+    }
+
+    .gewerk-card:hover .gewerk-icon { background: rgba(0,180,200,0.15); }
+
+    .gewerk-icon svg { color: var(--teal); }
+
+    .gewerk-tag {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 10px;
+    }
+
+    .gewerk-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .gewerk-hook {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .gewerk-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      transition: gap 0.2s;
+    }
+
+    .gewerk-card:hover .gewerk-link { gap: 12px; }
+
+    .gewerk-link svg { transition: transform 0.2s; }
+    .gewerk-card:hover .gewerk-link svg { transform: translateX(2px); }
+
+    /* ── CTA STRIP ── */
+    .cta-strip {
+      background: var(--navy);
+      padding: 80px 56px;
+      text-align: center;
+    }
+
+    .cta-strip h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .cta-strip h2 span { color: var(--teal); }
+
+    .cta-strip p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.8;
+    }
+
+    .btn-teal {
+      display: inline-block;
+      padding: 16px 44px;
+      background: var(--teal);
+      color: var(--navy);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .btn-teal:hover { background: #00cce0; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    footer img { height: 36px; filter: brightness(0) invert(1); opacity: 0.7; }
+
+    footer span {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.4);
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--teal); }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s, transform 0.65s;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+    .reveal-d5 { transition-delay: 0.5s; }
+    .reveal-d6 { transition-delay: 0.6s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .gewerke-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--navy);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.1rem; }
+      .dropdown-menu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 8px 0 0;
+        min-width: auto;
+        text-align: center;
+      }
+      .dropdown-menu a { font-size: 0.9rem !important; padding: 8px 12px; }
+      .dropdown-divider { display: none; }
+      .menu-toggle { display: flex; z-index: 101; position: relative; }
+      .page-hero { padding: 120px 24px 72px; }
+      .gewerke-section { padding: 64px 24px; }
+      .gewerke-grid { grid-template-columns: 1fr; gap: 20px; }
+      .cta-strip { padding: 64px 24px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="https://oelex09.github.io/Schinkel-Consulting/logo_schinkel.png" alt="Schinkel Consulting" />
+    </a>
+    <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a href="gewerke.html">
+          Gewerke
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="rohbau.html">Rohbau</a>
+          <a href="maler.html">Maler</a>
+          <a href="stukkateur.html">Stukkateur</a>
+          <a href="elektro.html">Elektro</a>
+          <a href="heizung.html">Heizung / SHK</a>
+          <div class="dropdown-divider"></div>
+          <a href="fliesen.html">Fliesen</a>
+          <a href="dachdecker.html">Zimmermann / Dachdecker</a>
+          <a href="fensterbau.html">Fensterbau</a>
+          <a href="gartenbau.html">Gartenbau</a>
+        </div>
+      </li>
+      <li><a href="index.html#ueber">Über mich</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+      <li><a href="zeitaudit.html">Zeitaudit</a></li>
+      <li><a href="index.html#kontakt" class="nav-cta">Gespräch vereinbaren</a></li>
+    </ul>
+    <button class="menu-toggle" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="index.html">Startseite</a>
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      <span>Gewerke</span>
+    </div>
+    <div class="page-hero-label">Lösungen nach Gewerk</div>
+    <h1>Für Ihr Handwerk.<br /><span>Nicht für irgendeines.</span></h1>
+    <p>Jedes Gewerk hat eigene Abläufe, eigene Schmerzpunkte – und eigene Potenziale. Hier finden Sie Lösungen, die exakt auf Ihre tägliche Arbeit zugeschnitten sind.</p>
+  </div>
+
+  <!-- GEWERKE GRID -->
+  <section class="gewerke-section">
+    <div class="gewerke-grid">
+
+      <!-- Rohbau -->
+      <a href="rohbau.html" class="gewerk-card reveal">
+        <div class="gewerk-icon">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+            <line x1="12" y1="12" x2="12" y2="17"/><line x1="9.5" y1="14.5" x2="14.5" y2="14.5"/>
+          </svg>
+        </div>
+        <div class="gewerk-tag">01 · Gewerk</div>
+        <div class="gewerk-name">Rohbau</div>
+        <p class="gewerk-hook">Digitales Bautagebuch, automatische Subunternehmer-Koordination und Aufmaß ohne Zettelwirtschaft.</p>
+        <span class="gewerk-link">
+          Mehr erfahren
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+
+      <!-- Maler -->
+      <a href="maler.html" class="gewerk-card reveal reveal-d1">
+        <div class="gewerk-icon">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 1 0-3-3z"/>
+            <path d="M9 8c-2 3-4 3.5-7 4l8 8c1-.5 3.5-2 4-7"/>
+            <path d="M14.5 17.5 4.5 15"/>
+          </svg>
+        </div>
+        <div class="gewerk-tag">02 · Gewerk</div>
+        <div class="gewerk-name">Maler / Lackierer</div>
+        <p class="gewerk-hook">Flächen berechnen, Farbe kalkulieren, Angebote in Minuten schreiben – statt abends am Tisch.</p>
+        <span class="gewerk-link">
+          Mehr erfahren
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+
+      <!-- Stukkateur -->
+      <a href="stukkateur.html" class="gewerk-card reveal reveal-d2">
+        <div class="gewerk-icon">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <div class="gewerk-tag">03 · Gewerk</div>
+        <div class="gewerk-name">Stukkateur</div>
+        <p class="gewerk-hook">Putzmengen exakt berechnen, Materialbestellung automatisieren, Aufmaße digital festhalten.</p>
+        <span class="gewerk-link">
+          Mehr erfahren
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+
+      <!-- Elektro -->
+      <a href="elektro.html" class="gewerk-card reveal reveal-d3">
+        <div class="gewerk-icon">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <div class="gewerk-tag">04 · Gewerk</div>
+        <div class="gewerk-name">Elektro</div>
+        <p class="gewerk-hook">Stücklisten automatisch erstellen, Revisionsunterlagen sofort fertig, Wartungstermine nie vergessen.</p>
+        <span class="gewerk-link">
+          Mehr erfahren
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+
+      <!-- Heizung -->
+      <a href="heizung.html" class="gewerk-card reveal reveal-d4">
+        <div class="gewerk-icon">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path d="M8 22a4.5 4.5 0 0 0 0-9c-2.5 0-4.5 2-4.5 4.5 0 1.38.62 2.6 1.6 3.44"/>
+            <path d="M8 22V4"/>
+            <path d="M12 6c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z"/>
+            <path d="M16 14c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z"/>
+            <path d="M14 8v4M18 16v4"/>
+          </svg>
+        </div>
+        <div class="gewerk-tag">05 · Gewerk</div>
+        <div class="gewerk-name">Heizung / SHK</div>
+        <p class="gewerk-hook">Wartungsintervalle automatisch im Blick, Angebote für Heizungstausch schnell kalkuliert.</p>
+        <span class="gewerk-link">
+          Mehr erfahren
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+
+      <!-- Fliesen -->
+      <a href="fliesen.html" class="gewerk-card reveal reveal-d5">
+        <div class="gewerk-icon">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="8" height="8" rx="1"/>
+            <rect x="13" y="3" width="8" height="8" rx="1"/>
+            <rect x="3" y="13" width="8" height="8" rx="1"/>
+            <rect x="13" y="13" width="8" height="8" rx="1"/>
+          </svg>
+        </div>
+        <div class="gewerk-tag">06 · Gewerk</div>
+        <div class="gewerk-name">Fliesen</div>
+        <p class="gewerk-hook">Fliesenmenge mit Verschnitt auf den Punkt berechnen – nie wieder Nachbestellung wegen Kalkulations-Fehler.</p>
+        <span class="gewerk-link">
+          Mehr erfahren
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+
+      <!-- Dachdecker -->
+      <a href="dachdecker.html" class="gewerk-card reveal reveal-d1">
+        <div class="gewerk-icon">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path d="M3 12L12 3l9 9"/>
+            <path d="M9 21V12h6v9"/>
+            <line x1="3" y1="12" x2="3" y2="21"/>
+            <line x1="21" y1="12" x2="21" y2="21"/>
+            <line x1="3" y1="21" x2="21" y2="21"/>
+          </svg>
+        </div>
+        <div class="gewerk-tag">07 · Gewerk</div>
+        <div class="gewerk-name">Zimmermann / Dachdecker</div>
+        <p class="gewerk-hook">Dachfläche, Holzmenge, Ziegelbedarf – automatisch kalkuliert, direkt ins Angebot übernommen.</p>
+        <span class="gewerk-link">
+          Mehr erfahren
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+
+      <!-- Fensterbau -->
+      <a href="fensterbau.html" class="gewerk-card reveal reveal-d2">
+        <div class="gewerk-icon">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="18" rx="1"/>
+            <line x1="12" y1="3" x2="12" y2="21"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+          </svg>
+        </div>
+        <div class="gewerk-tag">08 · Gewerk</div>
+        <div class="gewerk-name">Fensterbau</div>
+        <p class="gewerk-hook">50 verschiedene Maße, eine saubere Liste. Aufmaß direkt ins Angebot – ohne Übertragungsfehler.</p>
+        <span class="gewerk-link">
+          Mehr erfahren
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+
+      <!-- Gartenbau -->
+      <a href="gartenbau.html" class="gewerk-card reveal reveal-d3">
+        <div class="gewerk-icon">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path d="M12 22V12"/>
+            <path d="M12 12C12 7 7 4 3 6c2 4 5 6 9 6z"/>
+            <path d="M12 12c0-5 5-8 9-6-2 4-5 6-9 6z"/>
+            <path d="M5 22h14"/>
+          </svg>
+        </div>
+        <div class="gewerk-tag">09 · Gewerk</div>
+        <div class="gewerk-name">Gartenbau</div>
+        <p class="gewerk-hook">Pflanzenmengen, Flächenberechnungen und Angebote mit vielen Positionen – automatisiert und fehlerfrei.</p>
+        <span class="gewerk-link">
+          Mehr erfahren
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <div class="cta-strip">
+    <h2>Ihr Gewerk ist <span>nicht dabei?</span></h2>
+    <p>Kein Problem. Ich entwickle Lösungen für jedes Handwerk – sprechen Sie mich einfach an.</p>
+    <a href="https://calendly.com/alexanderschinkel-info/30min" target="_blank" rel="noopener" class="btn-teal">Kostenloses Erstgespräch</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="https://oelex09.github.io/Schinkel-Consulting/logo_schinkel.png" alt="Schinkel Consulting" />
+    <span>© 2026 Schinkel Consulting · Alexander Schinkel</span>
+    <span>
+      <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="agb.html">AGB</a>
+    </span>
+  </footer>
+
+  <script>
+    const menuBtn = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-label', navLinks.classList.contains('open') ? 'Menü schließen' : 'Menü öffnen');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
