@@ -880,11 +880,6 @@
         </div>
         <div class="field-row">
           <div class="field-group">
-            <label>Anzahl Mitarbeiter (betroffen)</label>
-            <input type="number" id="employees" value="5" min="1" max="200">
-            <div class="field-hint">Wie viele MA sind von administrativen Aufgaben betroffen?</div>
-          </div>
-          <div class="field-group">
             <label>Ø Stundensatz (€ brutto inkl. NK)</label>
             <input type="number" id="hourlyrate" value="45" min="15" max="200">
             <div class="field-hint">Gesamtkosten pro Stunde (Lohn + Lohnnebenkosten ÷ Arbeitsstunden)</div>
@@ -1135,23 +1130,32 @@
         <div class="q-scale">
           <span>0 Std.</span><span>${q.max/2} Std.</span><span>${q.max} Std.</span>
         </div>
+        <div style="display:flex; align-items:center; gap:10px; margin-top:12px;">
+          <label style="font-size:0.78rem; font-weight:600; color:var(--ink); text-transform:uppercase; letter-spacing:0.05em; flex:1;">Betroffene Mitarbeiter:</label>
+          <input type="number" id="ma-${q.id}" min="0" max="200" value="1" style="width:60px; padding:8px; border:2px solid var(--line); border-radius:6px; font-size:0.9rem;" oninput="updateQ('${q.id}', ${catId})">
+        </div>
       </div>
     `).join('');
     updateLive(catId);
   }
 
   function updateQ(qId, catId) {
-    const val = parseFloat(document.getElementById(qId).value);
+    const hours = parseFloat(document.getElementById(qId).value);
+    const ma = parseInt(document.getElementById(`ma-${qId}`).value) || 0;
+    const total = hours * ma;
     const badge = document.getElementById(`badge-${qId}`);
-    badge.textContent = val === 0 ? '0 Std./Wo.' : `${val.toFixed(1).replace('.',',')} Std./Wo.`;
-    badge.className = val > 0 ? 'q-badge has-value' : 'q-badge';
+    badge.textContent = total === 0 ? '0 Std./Wo.' : `${total.toFixed(1).replace('.',',')} Std./Wo.`;
+    badge.className = total > 0 ? 'q-badge has-value' : 'q-badge';
     updateLive(catId);
   }
 
   function getCatTotal(catId) {
     return QUESTIONS[catId].reduce((sum, q) => {
-      const el = document.getElementById(q.id);
-      return sum + (el ? parseFloat(el.value) : 0);
+      const hourEl = document.getElementById(q.id);
+      const maEl = document.getElementById(`ma-${q.id}`);
+      const hours = hourEl ? parseFloat(hourEl.value) : 0;
+      const ma = maEl ? (parseInt(maEl.value) || 0) : 0;
+      return sum + (hours * ma);
     }, 0);
   }
 
@@ -1160,21 +1164,14 @@
 
   function updateLive(catId) {
     const total = getCatTotal(catId);
-    const emp = getEmployees();
     const rate = getRate();
-    const teamTotal = total * emp;
-    const costYear = teamTotal * rate * 52;
+    const costYear = total * rate * 52;
     const live = document.getElementById(`live-${catId}`);
     live.innerHTML = `
       <div class="live-bar-item">
         <div class="live-bar-label">Diese Kategorie</div>
         <div class="live-bar-value">${total.toFixed(1).replace('.',',')} Std./Wo.</div>
-        <div class="live-bar-sub">pro Mitarbeiter</div>
-      </div>
-      <div class="live-bar-item">
-        <div class="live-bar-label">Gesamtes Team (${emp} MA)</div>
-        <div class="live-bar-value">${teamTotal.toFixed(0)} Std./Wo.</div>
-        <div class="live-bar-sub">kombiniert</div>
+        <div class="live-bar-sub">effektive Arbeitszeit</div>
       </div>
       <div class="live-bar-item">
         <div class="live-bar-label">Monetärer Verlust</div>
@@ -1210,15 +1207,13 @@
   }
 
   function showResults() {
-    const emp  = getEmployees();
     const rate = getRate();
     const company = document.getElementById('company').value || 'Ihr Unternehmen';
 
     const catTotals = {};
     [1,2,3,4].forEach(c => catTotals[c] = getCatTotal(c));
-    const totalPerMA = Object.values(catTotals).reduce((a,b) => a+b, 0);
-    const totalTeam  = totalPerMA * emp;
-    const hoursYear  = totalTeam * 52;
+    const totalWeek  = Object.values(catTotals).reduce((a,b) => a+b, 0);
+    const hoursYear  = totalWeek * 52;
     const costYear   = hoursYear * rate;
     const savingYear = costYear * 0.70;
     const monthSave  = savingYear / 12;
@@ -1226,17 +1221,17 @@
 
     document.getElementById('result-headline').textContent = `Zeitaudit: ${company}`;
     document.getElementById('result-subline').textContent  =
-      `${emp} Mitarbeiter · ${totalPerMA.toFixed(1).replace('.',',')} Std./Wo. pro Person · ${fmtEur(costYear)} Jahreskosten`;
+      `${totalWeek.toFixed(1).replace('.',',')} Std./Woche · ${fmtEur(costYear)} Jahreskosten`;
 
-    document.getElementById('kpi-hours-week').textContent  = `${totalTeam.toFixed(0)} Std.`;
-    document.getElementById('kpi-hours-year').textContent  = `${hoursYear.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,'.')} Stunden/Jahr (Team)`;
+    document.getElementById('kpi-hours-week').textContent  = `${totalWeek.toFixed(0)} Std.`;
+    document.getElementById('kpi-hours-year').textContent  = `${hoursYear.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,'.')} Stunden/Jahr`;
     document.getElementById('kpi-cost-year').textContent   = fmtEur(costYear);
     document.getElementById('kpi-saving-year').textContent = fmtEur(savingYear);
     document.getElementById('roi-monthly').textContent     = fmtEur(monthSave);
     document.getElementById('roi-breakeven').textContent   = breakeven <= 2 ? `< 2` : breakeven > 24 ? '> 24' : `${breakeven}`;
 
     const labels = [1,2,3,4].map(c => CAT_NAMES[c]);
-    const data   = [1,2,3,4].map(c => catTotals[c] * emp);
+    const data   = [1,2,3,4].map(c => catTotals[c]);
     const colors = [1,2,3,4].map(c => CAT_COLORS[c]);
 
     if (chart) chart.destroy();
@@ -1252,8 +1247,8 @@
 
     const maxVal = Math.max(...data);
     document.getElementById('cat-breakdown').innerHTML = [1,2,3,4].map(c => {
-      const h = catTotals[c] * emp;
-      const pct = totalTeam > 0 ? Math.round(h / totalTeam * 100) : 0;
+      const h = catTotals[c];
+      const pct = totalWeek > 0 ? Math.round(h / totalWeek * 100) : 0;
       return `
         <div class="cat-row">
           <div class="cat-dot" style="background:${CAT_COLORS[c]}"></div>
@@ -1272,9 +1267,12 @@
     const allQ = [];
     [1,2,3,4].forEach(c => {
       QUESTIONS[c].forEach(q => {
-        const el = document.getElementById(q.id);
-        const val = el ? parseFloat(el.value) : 0;
-        if (val > 0) allQ.push({ label: q.label, cat: c, hours: val * emp, saving: val * emp * 0.7 * rate * 52 });
+        const hoursEl = document.getElementById(q.id);
+        const maEl = document.getElementById(`ma-${q.id}`);
+        const hours = hoursEl ? parseFloat(hoursEl.value) : 0;
+        const ma = maEl ? (parseInt(maEl.value) || 0) : 0;
+        const total = hours * ma;
+        if (total > 0) allQ.push({ label: q.label, cat: c, hours: total, saving: total * 0.7 * rate * 52 });
       });
     });
     allQ.sort((a,b) => b.hours - a.hours);
@@ -1287,7 +1285,7 @@
           <div class="qw-rank ${ranks[i]}">${i+1}</div>
           <div class="qw-info">
             <div class="qw-name">${CAT_ICONS[q.cat]} ${q.label}</div>
-            <div class="qw-hours">${q.hours.toFixed(1).replace('.',',')} Std./Wo. (Team) · ${fmtEur(q.hours * rate * 52)} / Jahr</div>
+            <div class="qw-hours">${q.hours.toFixed(1).replace('.',',')} Std./Wo. · ${fmtEur(q.hours * rate * 52)} / Jahr</div>
           </div>
           <div class="qw-saving">-${fmtEur(q.saving)} / Jahr</div>
         </div>
@@ -1296,19 +1294,18 @@
     auditData = {
       company:        document.getElementById('company').value || '(kein Name)',
       industry:       document.getElementById('industry').value,
-      employees:      emp,
       hourlyRate:     rate,
-      totalHoursWeek: Math.round(totalTeam * 10) / 10,
+      totalHoursWeek: Math.round(totalWeek * 10) / 10,
       totalHoursYear: Math.round(hoursYear),
       costPerYear:    Math.round(costYear),
       savingPerYear:  Math.round(savingYear),
       monthSaving:    Math.round(monthSave),
       breakevenMonths: breakeven > 24 ? '>24' : breakeven < 2 ? '<2' : breakeven,
       categories: {
-        Kommunikation: { hours: Math.round(catTotals[1]*emp*10)/10, cost: Math.round(catTotals[1]*emp*rate*52) },
-        Dokumentation: { hours: Math.round(catTotals[2]*emp*10)/10, cost: Math.round(catTotals[2]*emp*rate*52) },
-        Buchhaltung:   { hours: Math.round(catTotals[3]*emp*10)/10, cost: Math.round(catTotals[3]*emp*rate*52) },
-        Planung:       { hours: Math.round(catTotals[4]*emp*10)/10, cost: Math.round(catTotals[4]*emp*rate*52) },
+        Kommunikation: { hours: Math.round(catTotals[1]*10)/10, cost: Math.round(catTotals[1]*rate*52) },
+        Dokumentation: { hours: Math.round(catTotals[2]*10)/10, cost: Math.round(catTotals[2]*rate*52) },
+        Buchhaltung:   { hours: Math.round(catTotals[3]*10)/10, cost: Math.round(catTotals[3]*rate*52) },
+        Planung:       { hours: Math.round(catTotals[4]*10)/10, cost: Math.round(catTotals[4]*rate*52) },
       },
       topWasters: top3.map(q => ({ label: q.label, hoursWeek: Math.round(q.hours*10)/10, savingYear: Math.round(q.saving) })),
       timestamp: new Date().toLocaleString('de-DE'),
@@ -1364,6 +1361,12 @@
       el.value = 0;
       const catId = Object.keys(QUESTIONS).find(c => QUESTIONS[c].some(q => q.id === el.id));
       if (catId) updateQ(el.id, parseInt(catId));
+    });
+    document.querySelectorAll('input[type="number"][id^="ma-"]').forEach(el => {
+      el.value = 1;
+      const qId = el.id.replace('ma-', '');
+      const catId = Object.keys(QUESTIONS).find(c => QUESTIONS[c].some(q => q.id === qId));
+      if (catId) updateQ(qId, parseInt(catId));
     });
     [1,2,3,4].forEach(c => { const el = document.getElementById(`questions-${c}`); if(el) el.innerHTML=''; });
     showStep(0);
