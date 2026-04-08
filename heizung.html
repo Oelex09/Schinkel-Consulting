@@ -405,68 +405,12 @@
       line-height: 1.8;
     }
 
-    /* ── DEMO SECTION ── */
-    .demo-section {
-      background: var(--navy);
-      padding: 96px 56px;
-    }
-
-    .demo-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: start;
-    }
-
-    .demo-copy .section-label::before { background: var(--teal); }
-
-    .demo-copy .section-title { color: var(--white); }
-    .demo-copy .section-sub { color: rgba(255,255,255,0.6); margin-bottom: 32px; }
-
-    .demo-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .demo-feature-icon {
-      width: 32px;
-      height: 32px;
-      background: rgba(0,180,200,0.12);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .demo-feature-icon svg { color: var(--teal); }
-
-    .demo-feature-text strong {
-      display: block;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 3px;
-    }
-    .demo-feature-text span {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.6;
-    }
-
-    /* Interactive Calculator */
-    .calc-widget {
       background: var(--white);
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 32px 80px rgba(0,0,0,0.35);
     }
 
-    .calc-header {
       background: var(--teal);
       padding: 20px 28px;
       display: flex;
@@ -474,13 +418,11 @@
       gap: 12px;
     }
 
-    .calc-header-dot {
       width: 10px; height: 10px;
       border-radius: 50%;
       background: rgba(255,255,255,0.4);
     }
 
-    .calc-header-title {
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -489,16 +431,13 @@
       margin-left: 4px;
     }
 
-    .calc-body { padding: 28px; }
 
-    .calc-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-bottom: 16px;
     }
 
-    .calc-field label {
       display: block;
       font-size: 0.72rem;
       font-weight: 600;
@@ -508,7 +447,6 @@
       margin-bottom: 6px;
     }
 
-    .calc-field input, .calc-field select {
       width: 100%;
       padding: 11px 14px;
       font-family: 'Outfit', sans-serif;
@@ -522,17 +460,14 @@
       transition: border-color 0.2s;
     }
 
-    .calc-field input:focus, .calc-field select:focus {
       border-color: var(--teal);
     }
 
-    .calc-divider {
       height: 1px;
       background: var(--line);
       margin: 20px 0;
     }
 
-    .calc-subhead {
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -559,14 +494,12 @@
     }
     .btn-calc:hover { background: #00cce0; transform: translateY(-1px); }
 
-    .calc-result {
       display: none;
       margin-top: 20px;
       background: var(--navy);
       border-radius: 6px;
       padding: 24px;
     }
-    .calc-result.visible { display: block; }
 
     .wartung-row {
       display: flex;
@@ -865,9 +798,6 @@
       .hero { padding: 120px 24px 72px; }
       .hero-stats-box { grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px; }
       .section { padding: 72px 24px; }
-      .demo-section { padding: 72px 24px; }
-      .calc-row { grid-template-columns: 1fr; }
-      .roi-table { font-size: 0.82rem; }
       .cta-section { padding: 72px 24px; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
     }
@@ -984,129 +914,6 @@
     </div>
   </section>
 
-  <!-- DEMO -->
-  <section class="demo-section" id="demo">
-    <div class="demo-inner">
-      <div class="demo-copy reveal">
-        <div class="section-label" style="color:var(--teal);">Interaktive Demo</div>
-        <h2 class="section-title section-title-white">So sieht Ihr<br />Wartungskalender aus.</h2>
-        <p class="section-sub section-sub-white">
-          Anlage und Einbaudatum eingeben – der Rechner berechnet den nächsten Wartungstermin und erstellt automatisch die Erinnerung.
-        </p>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Anlagenregister</strong>
-            <span>Alle Kunden und Anlagen in einem System.</span>
-          </div>
-        </div>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Automatische Erinnerungen</strong>
-            <span>Per E-Mail oder SMS, rechtzeitig vor dem Termin.</span>
-          </div>
-        </div>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Wartungsprotokoll</strong>
-            <span>Nach dem Besuch per Smartphone ausgefüllt und archiviert.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Interactive Wartungstermin-Rechner -->
-      <div class="reveal reveal-d1">
-        <div class="calc-widget">
-          <div class="calc-header">
-            <div class="calc-header-dot"></div>
-            <div class="calc-header-dot"></div>
-            <div class="calc-header-dot"></div>
-            <span class="calc-header-title">Wartungstermin-Rechner</span>
-          </div>
-          <div class="calc-body">
-
-            <div class="calc-subhead">Anlage &amp; Kunde</div>
-            <div class="calc-row">
-              <div class="calc-field" style="grid-column: 1 / -1;">
-                <label>Kundenname</label>
-                <input type="text" id="kundenname" placeholder="z. B. Familie Müller" />
-              </div>
-            </div>
-            <div class="calc-row">
-              <div class="calc-field">
-                <label>Anlagentyp</label>
-                <select id="anlagentyp">
-                  <option value="Gasheizung">Gasheizung</option>
-                  <option value="Ölheizung">Ölheizung</option>
-                  <option value="Wärmepumpe">Wärmepumpe</option>
-                  <option value="Pelletheizung">Pelletheizung</option>
-                  <option value="Solaranlage">Solaranlage</option>
-                </select>
-              </div>
-              <div class="calc-field">
-                <label>Wartungsintervall</label>
-                <select id="intervall">
-                  <option value="6">6 Monate</option>
-                  <option value="12" selected>12 Monate</option>
-                  <option value="24">24 Monate</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="calc-divider"></div>
-            <div class="calc-subhead">Termine</div>
-
-            <div class="calc-row">
-              <div class="calc-field">
-                <label>Letzte Wartung</label>
-                <input type="date" id="letzte-wartung" />
-              </div>
-              <div class="calc-field">
-                <label>Einbaudatum</label>
-                <input type="date" id="einbaudatum" />
-              </div>
-            </div>
-
-            <button class="btn-calc" onclick="berechneWartung()">Wartungstermin berechnen →</button>
-
-            <div class="calc-result" id="wartung-ergebnis">
-              <div class="wartung-row">
-                <span class="wartung-label">Kunde</span>
-                <span class="wartung-val" id="erg-kunde">–</span>
-              </div>
-              <div class="wartung-row">
-                <span class="wartung-label">Anlage</span>
-                <span class="wartung-val" id="erg-anlage">–</span>
-              </div>
-              <div class="wartung-row">
-                <span class="wartung-label">Nächste Wartung fällig am</span>
-                <span class="wartung-val" id="erg-datum">–</span>
-              </div>
-              <div class="wartung-row" style="border-bottom: none;">
-                <span class="wartung-label">Tage bis zur Wartung</span>
-                <span class="wartung-val" id="erg-tage">–</span>
-              </div>
-              <div id="erg-status"></div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOLUTIONS -->
   <section class="section section-light" id="loesungen">
     <div class="section-inner">
       <div class="reveal">

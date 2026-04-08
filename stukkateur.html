@@ -406,10 +406,6 @@
     }
 
     /* DEMO SECTION */
-    .demo-section {
-      background: var(--navy);
-      padding: 96px 56px;
-    }
 
     .demo-inner {
       max-width: 1200px;
@@ -459,14 +455,12 @@
     }
 
     /* Interactive Calculator / Widget */
-    .calc-widget {
       background: var(--white);
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 32px 80px rgba(0,0,0,0.35);
     }
 
-    .calc-header {
       background: var(--teal);
       padding: 20px 28px;
       display: flex;
@@ -474,13 +468,11 @@
       gap: 12px;
     }
 
-    .calc-header-dot {
       width: 10px; height: 10px;
       border-radius: 50%;
       background: rgba(255,255,255,0.4);
     }
 
-    .calc-header-title {
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -489,16 +481,13 @@
       margin-left: 4px;
     }
 
-    .calc-body { padding: 28px; }
 
-    .calc-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-bottom: 16px;
     }
 
-    .calc-field label {
       display: block;
       font-size: 0.72rem;
       font-weight: 600;
@@ -508,7 +497,6 @@
       margin-bottom: 6px;
     }
 
-    .calc-field input, .calc-field select {
       width: 100%;
       padding: 11px 14px;
       font-family: 'Outfit', sans-serif;
@@ -522,17 +510,14 @@
       transition: border-color 0.2s;
     }
 
-    .calc-field input:focus, .calc-field select:focus {
       border-color: var(--teal);
     }
 
-    .calc-divider {
       height: 1px;
       background: var(--line);
       margin: 20px 0;
     }
 
-    .calc-subhead {
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -559,14 +544,12 @@
     }
     .btn-calc:hover { background: #00cce0; transform: translateY(-1px); }
 
-    .calc-result {
       display: none;
       margin-top: 20px;
       background: var(--navy);
       border-radius: 6px;
       padding: 24px;
     }
-    .calc-result.visible { display: block; }
 
     .result-grid {
       display: grid;
@@ -868,9 +851,6 @@
       .hero { padding: 120px 24px 72px; }
       .hero-stats-box { grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px; }
       .section { padding: 72px 24px; }
-      .demo-section { padding: 72px 24px; }
-      .calc-row { grid-template-columns: 1fr; }
-      .result-grid { grid-template-columns: 1fr 1fr; }
       .roi-table { font-size: 0.82rem; }
       .cta-section { padding: 72px 24px; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
@@ -988,123 +968,6 @@
     </div>
   </section>
 
-  <!-- DEMO -->
-  <section class="demo-section" id="demo">
-    <div class="demo-inner">
-      <div class="demo-copy reveal">
-        <div class="section-label" style="color:var(--teal);">Interaktive Demo</div>
-        <h2 class="section-title section-title-white">So sieht Ihr<br />Putzmengen-Rechner aus.</h2>
-        <p class="section-sub section-sub-white">
-          Fläche und Putzdicke eingeben – Sie erhalten sofort Materialbedarf in kg, Sackanzahl und Materialkosten.
-        </p>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Mehrere Räume</strong>
-            <span>Jede Fläche einzeln eingeben, Summe automatisch.</span>
-          </div>
-        </div>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Putzdicke variabel</strong>
-            <span>Von 5 mm Feinputz bis 35 mm Unterputz.</span>
-          </div>
-        </div>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Kalibriert auf Ihre Produkte</strong>
-            <span>Baumit, Knauf oder Eigenmischung.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Putzmengen-Rechner Widget -->
-      <div class="reveal reveal-d1">
-        <div class="calc-widget">
-          <div class="calc-header">
-            <div class="calc-header-dot"></div>
-            <div class="calc-header-dot"></div>
-            <div class="calc-header-dot"></div>
-            <span class="calc-header-title">Putzmengen-Rechner</span>
-          </div>
-          <div class="calc-body">
-
-            <div class="calc-subhead">Fläche &amp; Putzdicke</div>
-            <div class="calc-row">
-              <div class="calc-field">
-                <label>Fläche (m²)</label>
-                <input type="number" id="putz-flaeche" placeholder="z. B. 80" step="0.5" min="0" />
-              </div>
-              <div class="calc-field">
-                <label>Putzdicke</label>
-                <select id="putz-dicke">
-                  <option value="0.005">Feinputz 5 mm</option>
-                  <option value="0.010">Kalkputz 10 mm</option>
-                  <option value="0.015" selected>Unterputz 15 mm</option>
-                  <option value="0.020">Außenputz 20 mm</option>
-                  <option value="0.035">Wärmedämmputz 35 mm</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="calc-row">
-              <div class="calc-field">
-                <label>Produkt</label>
-                <select id="putz-produkt">
-                  <option value="Baumit">Baumit</option>
-                  <option value="Knauf">Knauf</option>
-                  <option value="Weber">Weber</option>
-                  <option value="Eigenmischung">Eigenmischung</option>
-                </select>
-              </div>
-              <div class="calc-field">
-                <label>Preis pro Sack (€)</label>
-                <input type="number" id="putz-preis" placeholder="18" value="18" step="0.50" min="0" />
-              </div>
-            </div>
-
-            <button class="btn-calc" onclick="putzmengeBerechnen()">Putzmengen berechnen →</button>
-
-            <div class="calc-result" id="putz-ergebnis">
-              <div class="result-grid">
-                <div class="result-item">
-                  <div class="result-label">Putzvolumen</div>
-                  <div class="result-val" id="res-volumen">– <span>m³</span></div>
-                </div>
-                <div class="result-item">
-                  <div class="result-label">Materialbedarf</div>
-                  <div class="result-val" id="res-kg">– <span>kg</span></div>
-                </div>
-                <div class="result-item">
-                  <div class="result-label">Sackanzahl (25 kg)</div>
-                  <div class="result-val" id="res-saecke">– <span>Säcke</span></div>
-                </div>
-                <div class="result-item">
-                  <div class="result-label">Materialkosten</div>
-                  <div class="result-val" id="res-kosten">– <span>€</span></div>
-                </div>
-              </div>
-              <p class="result-note">Richtwert auf Basis Ihrer Eingaben (Dichte ~1.500 kg/m³). Ihr persönlicher Rechner wird exakt auf Ihre Produkte und Mischungsverhältnisse kalibriert.</p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOLUTIONS -->
   <section class="section section-light" id="loesungen">
     <div class="section-inner">
       <div class="reveal">

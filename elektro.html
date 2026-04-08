@@ -405,68 +405,12 @@
       line-height: 1.8;
     }
 
-    /* ── DEMO SECTION ── */
-    .demo-section {
-      background: var(--navy);
-      padding: 96px 56px;
-    }
-
-    .demo-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: start;
-    }
-
-    .demo-copy .section-label::before { background: var(--teal); }
-
-    .demo-copy .section-title { color: var(--white); }
-    .demo-copy .section-sub { color: rgba(255,255,255,0.6); margin-bottom: 32px; }
-
-    .demo-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .demo-feature-icon {
-      width: 32px;
-      height: 32px;
-      background: rgba(0,180,200,0.12);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .demo-feature-icon svg { color: var(--teal); }
-
-    .demo-feature-text strong {
-      display: block;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 3px;
-    }
-    .demo-feature-text span {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.6;
-    }
-
-    /* Interactive Calculator */
-    .calc-widget {
       background: var(--white);
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 32px 80px rgba(0,0,0,0.35);
     }
 
-    .calc-header {
       background: var(--teal);
       padding: 20px 28px;
       display: flex;
@@ -474,13 +418,11 @@
       gap: 12px;
     }
 
-    .calc-header-dot {
       width: 10px; height: 10px;
       border-radius: 50%;
       background: rgba(255,255,255,0.4);
     }
 
-    .calc-header-title {
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -489,16 +431,13 @@
       margin-left: 4px;
     }
 
-    .calc-body { padding: 28px; }
 
-    .calc-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-bottom: 16px;
     }
 
-    .calc-field label {
       display: block;
       font-size: 0.72rem;
       font-weight: 600;
@@ -508,7 +447,6 @@
       margin-bottom: 6px;
     }
 
-    .calc-field input, .calc-field select {
       width: 100%;
       padding: 11px 14px;
       font-family: 'Outfit', sans-serif;
@@ -522,17 +460,14 @@
       transition: border-color 0.2s;
     }
 
-    .calc-field input:focus, .calc-field select:focus {
       border-color: var(--teal);
     }
 
-    .calc-divider {
       height: 1px;
       background: var(--line);
       margin: 20px 0;
     }
 
-    .calc-subhead {
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -559,14 +494,12 @@
     }
     .btn-calc:hover { background: #00cce0; transform: translateY(-1px); }
 
-    .calc-result {
       display: none;
       margin-top: 20px;
       background: var(--navy);
       border-radius: 6px;
       padding: 24px;
     }
-    .calc-result.visible { display: block; }
 
     .stueckliste-item {
       display: flex;
@@ -870,9 +803,6 @@
       .hero { padding: 120px 24px 72px; }
       .hero-stats-box { grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px; }
       .section { padding: 72px 24px; }
-      .demo-section { padding: 72px 24px; }
-      .calc-row { grid-template-columns: 1fr; }
-      .roi-table { font-size: 0.82rem; }
       .cta-section { padding: 72px 24px; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
     }
@@ -989,104 +919,6 @@
     </div>
   </section>
 
-  <!-- DEMO -->
-  <section class="demo-section" id="demo">
-    <div class="demo-inner">
-      <div class="demo-copy reveal">
-        <div class="section-label" style="color:var(--teal);">Interaktive Demo</div>
-        <h2 class="section-title section-title-white">So sieht Ihr<br />Stücklisten-Generator aus.</h2>
-        <p class="section-sub section-sub-white">
-          Räume und Ausstattung eingeben – der Generator erstellt die komplette Materialliste, fertig für Bestellung und Dokumentation.
-        </p>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Raumweise Erfassung</strong>
-            <span>Jeder Raum einzeln mit individueller Ausstattung.</span>
-          </div>
-        </div>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Automatische Summierung</strong>
-            <span>Gesamtliste aller Positionen mit Mengen.</span>
-          </div>
-        </div>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Direkt in Angebot &amp; Bestellung übernehmbar</strong>
-            <span>Kein Abtippen, keine Doppeleingabe – ein Klick genügt.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Interactive Stücklisten-Generator -->
-      <div class="reveal reveal-d1">
-        <div class="calc-widget">
-          <div class="calc-header">
-            <div class="calc-header-dot"></div>
-            <div class="calc-header-dot"></div>
-            <div class="calc-header-dot"></div>
-            <span class="calc-header-title">Stücklisten-Generator</span>
-          </div>
-          <div class="calc-body">
-
-            <div class="calc-subhead">Material &amp; Mengen</div>
-            <div class="calc-row">
-              <div class="calc-field">
-                <label>Anzahl Steckdosen</label>
-                <input type="number" id="steckdosen" placeholder="0" min="0" value="0" />
-              </div>
-              <div class="calc-field">
-                <label>Anzahl Lichtschalter</label>
-                <input type="number" id="lichtschalter" placeholder="0" min="0" value="0" />
-              </div>
-            </div>
-            <div class="calc-row">
-              <div class="calc-field">
-                <label>Anzahl Leuchten</label>
-                <input type="number" id="leuchten" placeholder="0" min="0" value="0" />
-              </div>
-              <div class="calc-field">
-                <label>Leitungsmeter NYM 3×1,5</label>
-                <input type="number" id="nym15" placeholder="0" min="0" value="0" />
-              </div>
-            </div>
-            <div class="calc-row">
-              <div class="calc-field">
-                <label>Leitungsmeter NYM 3×2,5</label>
-                <input type="number" id="nym25" placeholder="0" min="0" value="0" />
-              </div>
-              <div class="calc-field">
-                <label>Anzahl Sicherungen B16</label>
-                <input type="number" id="sicherungen" placeholder="0" min="0" value="0" />
-              </div>
-            </div>
-
-            <button class="btn-calc" onclick="erstelleStueckliste()">Stückliste erstellen →</button>
-
-            <div class="calc-result" id="stueckliste-ergebnis">
-              <div id="stueckliste-liste"></div>
-              <div class="stueckliste-total" id="stueckliste-total"></div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOLUTIONS -->
   <section class="section section-light" id="loesungen">
     <div class="section-inner">
       <div class="reveal">

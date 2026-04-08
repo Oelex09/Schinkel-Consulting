@@ -406,10 +406,6 @@
     }
 
     /* DEMO SECTION */
-    .demo-section {
-      background: var(--navy);
-      padding: 96px 56px;
-    }
 
     .demo-inner {
       max-width: 1200px;
@@ -459,14 +455,12 @@
     }
 
     /* Interactive Calculator / Widget */
-    .calc-widget {
       background: var(--white);
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 32px 80px rgba(0,0,0,0.35);
     }
 
-    .calc-header {
       background: var(--teal);
       padding: 20px 28px;
       display: flex;
@@ -474,13 +468,11 @@
       gap: 12px;
     }
 
-    .calc-header-dot {
       width: 10px; height: 10px;
       border-radius: 50%;
       background: rgba(255,255,255,0.4);
     }
 
-    .calc-header-title {
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -489,16 +481,13 @@
       margin-left: 4px;
     }
 
-    .calc-body { padding: 28px; }
 
-    .calc-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-bottom: 16px;
     }
 
-    .calc-field label {
       display: block;
       font-size: 0.72rem;
       font-weight: 600;
@@ -508,7 +497,6 @@
       margin-bottom: 6px;
     }
 
-    .calc-field input, .calc-field select, .calc-field textarea {
       width: 100%;
       padding: 11px 14px;
       font-family: 'Outfit', sans-serif;
@@ -523,14 +511,11 @@
       resize: vertical;
     }
 
-    .calc-field input:focus, .calc-field select:focus, .calc-field textarea:focus {
       border-color: var(--teal);
     }
 
-    .calc-field-full {
       margin-bottom: 16px;
     }
-    .calc-field-full label {
       display: block;
       font-size: 0.72rem;
       font-weight: 600;
@@ -539,7 +524,6 @@
       color: var(--ink-soft);
       margin-bottom: 6px;
     }
-    .calc-field-full input, .calc-field-full select, .calc-field-full textarea {
       width: 100%;
       padding: 11px 14px;
       font-family: 'Outfit', sans-serif;
@@ -553,17 +537,14 @@
       transition: border-color 0.2s;
       resize: vertical;
     }
-    .calc-field-full input:focus, .calc-field-full select:focus, .calc-field-full textarea:focus {
       border-color: var(--teal);
     }
 
-    .calc-divider {
       height: 1px;
       background: var(--line);
       margin: 20px 0;
     }
 
-    .calc-subhead {
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -590,14 +571,12 @@
     }
     .btn-calc:hover { background: #00cce0; transform: translateY(-1px); }
 
-    .calc-result {
       display: none;
       margin-top: 20px;
       background: var(--navy);
       border-radius: 6px;
       padding: 24px;
     }
-    .calc-result.visible { display: block; }
 
     .result-label {
       font-size: 0.65rem;
@@ -895,9 +874,6 @@
       .hero { padding: 120px 24px 72px; }
       .hero-stats-box { grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px; }
       .section { padding: 72px 24px; }
-      .demo-section { padding: 72px 24px; }
-      .calc-row { grid-template-columns: 1fr; }
-      .roi-table { font-size: 0.82rem; }
       .cta-section { padding: 72px 24px; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
     }
@@ -1014,119 +990,6 @@
     </div>
   </section>
 
-  <!-- DEMO -->
-  <section class="demo-section" id="demo">
-    <div class="demo-inner">
-      <div class="demo-copy reveal">
-        <div class="section-label" style="color:var(--teal);">Interaktive Demo</div>
-        <h2 class="section-title section-title-white">So sieht Ihr digitales<br />Bautagebuch aus.</h2>
-        <p class="section-sub section-sub-white">
-          Füllen Sie das Formular aus – der Tagesbericht ist fertig formatiert, gespeichert und jederzeit abrufbar.
-        </p>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Smartphone-tauglich</strong>
-            <span>Mitarbeiter tragen direkt vor Ort ein, kein Zettel nötig.</span>
-          </div>
-        </div>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Automatisch archiviert</strong>
-            <span>Nach Projekt sortiert, sofort durchsuchbar.</span>
-          </div>
-        </div>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Rechtssicher</strong>
-            <span>Zeitstempel, Unterschrift und Fotobeweis auf Knopfdruck.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bautagebuch-Generator Widget -->
-      <div class="reveal reveal-d1">
-        <div class="calc-widget">
-          <div class="calc-header">
-            <div class="calc-header-dot"></div>
-            <div class="calc-header-dot"></div>
-            <div class="calc-header-dot"></div>
-            <span class="calc-header-title">Bautagebuch-Generator</span>
-          </div>
-          <div class="calc-body">
-
-            <div class="calc-subhead">Grunddaten</div>
-            <div class="calc-row">
-              <div class="calc-field">
-                <label>Datum</label>
-                <input type="date" id="bau-datum" />
-              </div>
-              <div class="calc-field">
-                <label>Projekt / Baustelle</label>
-                <input type="text" id="bau-projekt" placeholder="z. B. Neubau Musterstraße 7" />
-              </div>
-            </div>
-
-            <div class="calc-row">
-              <div class="calc-field">
-                <label>Wetter</label>
-                <select id="bau-wetter">
-                  <option value="Sonnig">Sonnig</option>
-                  <option value="Bewölkt">Bewölkt</option>
-                  <option value="Regen">Regen</option>
-                  <option value="Frost">Frost</option>
-                </select>
-              </div>
-              <div class="calc-field">
-                <label>Temperatur (°C)</label>
-                <input type="number" id="bau-temp" placeholder="z. B. 14" />
-              </div>
-            </div>
-
-            <div class="calc-field-full">
-              <label>Mitarbeiter auf der Baustelle</label>
-              <input type="number" id="bau-ma" placeholder="z. B. 5" min="0" />
-            </div>
-
-            <div class="calc-divider"></div>
-            <div class="calc-subhead">Tagesfortschritt</div>
-
-            <div class="calc-field-full">
-              <label>Heutiger Fortschritt</label>
-              <textarea id="bau-fortschritt" rows="2" placeholder="z. B. Fundamentbewehrung abgeschlossen, Schalung gestellt"></textarea>
-            </div>
-
-            <div class="calc-field-full">
-              <label>Besonderheiten / Probleme</label>
-              <textarea id="bau-probleme" rows="2" placeholder="z. B. Materiallieferung verzögert sich um 1 Tag"></textarea>
-            </div>
-
-            <button class="btn-calc" onclick="bautagebuchErstellen()">Tagesbericht erstellen →</button>
-
-            <div class="calc-result" id="bau-ergebnis">
-              <div class="result-label">Ihr Tagesbericht</div>
-              <div class="result-report" id="bau-report"></div>
-              <p class="result-note">Dieser Bericht wird automatisch mit Zeitstempel archiviert und ist jederzeit abrufbar. Ihr System wird zusätzlich Foto-Upload und digitale Unterschrift enthalten.</p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOLUTIONS -->
   <section class="section section-light" id="loesungen">
     <div class="section-inner">
       <div class="reveal">

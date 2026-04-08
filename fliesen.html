@@ -405,68 +405,12 @@
       line-height: 1.8;
     }
 
-    /* ── DEMO SECTION ── */
-    .demo-section {
-      background: var(--navy);
-      padding: 96px 56px;
-    }
-
-    .demo-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: start;
-    }
-
-    .demo-copy .section-label::before { background: var(--teal); }
-
-    .demo-copy .section-title { color: var(--white); }
-    .demo-copy .section-sub { color: rgba(255,255,255,0.6); margin-bottom: 32px; }
-
-    .demo-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .demo-feature-icon {
-      width: 32px;
-      height: 32px;
-      background: rgba(0,180,200,0.12);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .demo-feature-icon svg { color: var(--teal); }
-
-    .demo-feature-text strong {
-      display: block;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 3px;
-    }
-    .demo-feature-text span {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.6;
-    }
-
-    /* Interactive Calculator */
-    .calc-widget {
       background: var(--white);
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 32px 80px rgba(0,0,0,0.35);
     }
 
-    .calc-header {
       background: var(--teal);
       padding: 20px 28px;
       display: flex;
@@ -474,13 +418,11 @@
       gap: 12px;
     }
 
-    .calc-header-dot {
       width: 10px; height: 10px;
       border-radius: 50%;
       background: rgba(255,255,255,0.4);
     }
 
-    .calc-header-title {
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -489,16 +431,13 @@
       margin-left: 4px;
     }
 
-    .calc-body { padding: 28px; }
 
-    .calc-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-bottom: 16px;
     }
 
-    .calc-field label {
       display: block;
       font-size: 0.72rem;
       font-weight: 600;
@@ -508,7 +447,6 @@
       margin-bottom: 6px;
     }
 
-    .calc-field input, .calc-field select {
       width: 100%;
       padding: 11px 14px;
       font-family: 'Outfit', sans-serif;
@@ -522,17 +460,14 @@
       transition: border-color 0.2s;
     }
 
-    .calc-field input:focus, .calc-field select:focus {
       border-color: var(--teal);
     }
 
-    .calc-divider {
       height: 1px;
       background: var(--line);
       margin: 20px 0;
     }
 
-    .calc-subhead {
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -559,14 +494,12 @@
     }
     .btn-calc:hover { background: #00cce0; transform: translateY(-1px); }
 
-    .calc-result {
       display: none;
       margin-top: 20px;
       background: var(--navy);
       border-radius: 6px;
       padding: 24px;
     }
-    .calc-result.visible { display: block; }
 
     .result-grid {
       display: grid;
@@ -868,9 +801,6 @@
       .hero { padding: 120px 24px 72px; }
       .hero-stats-box { grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px; }
       .section { padding: 72px 24px; }
-      .demo-section { padding: 72px 24px; }
-      .calc-row { grid-template-columns: 1fr; }
-      .result-grid { grid-template-columns: 1fr 1fr; }
       .roi-table { font-size: 0.82rem; }
       .cta-section { padding: 72px 24px; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
@@ -988,138 +918,6 @@
     </div>
   </section>
 
-  <!-- DEMO -->
-  <section class="demo-section" id="demo">
-    <div class="demo-inner">
-      <div class="demo-copy reveal">
-        <div class="section-label" style="color:var(--teal);">Interaktive Demo</div>
-        <h2 class="section-title section-title-white">So sieht Ihr Fliesenrechner aus.</h2>
-        <p class="section-sub section-sub-white">
-          Fläche und Fliesengröße eingeben, Verlegemuster und Verschnitt wählen – Sie erhalten Stückzahl, Kleberbedarf und Fugenmasse auf einen Blick.
-        </p>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Verschnitt automatisch</strong>
-            <span>Standard, Diagonal oder Fischgrätmuster – der richtige Zuschlag wird automatisch angewendet.</span>
-          </div>
-        </div>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Kleber und Fugenmasse</strong>
-            <span>Bedarf in kg und Eimern, kalibriert auf Ihr Produkt.</span>
-          </div>
-        </div>
-
-        <div class="demo-feature">
-          <div class="demo-feature-icon">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="demo-feature-text">
-            <strong>Dokumentation</strong>
-            <span>Alle Werte speicherbar und ins Angebot übernehmbar.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Interactive Calculator -->
-      <div class="reveal reveal-d1" id="rechner-anchor">
-        <div class="calc-widget">
-          <div class="calc-header">
-            <div class="calc-header-dot"></div>
-            <div class="calc-header-dot"></div>
-            <div class="calc-header-dot"></div>
-            <span class="calc-header-title">Fliesenrechner</span>
-          </div>
-          <div class="calc-body">
-
-            <div class="calc-subhead">Fläche &amp; Fliesengröße</div>
-            <div class="calc-row">
-              <div class="calc-field">
-                <label>Fläche (m²)</label>
-                <input type="number" id="flaeche" placeholder="20" step="0.5" min="0" />
-              </div>
-              <div class="calc-field">
-                <label>Fliesenlänge (cm)</label>
-                <input type="number" id="fliesen-laenge" placeholder="60" value="60" step="1" min="1" />
-              </div>
-            </div>
-            <div class="calc-row">
-              <div class="calc-field">
-                <label>Fliesenbreite (cm)</label>
-                <input type="number" id="fliesen-breite" placeholder="60" value="60" step="1" min="1" />
-              </div>
-              <div class="calc-field">
-                <label>Fugenbreite</label>
-                <select id="fugenbreite">
-                  <option value="2">2 mm</option>
-                  <option value="3" selected>3 mm</option>
-                  <option value="5">5 mm</option>
-                  <option value="8">8 mm</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="calc-divider"></div>
-            <div class="calc-subhead">Verlegemuster</div>
-            <div class="calc-row" style="grid-template-columns: 1fr;">
-              <div class="calc-field">
-                <label>Verlegemuster</label>
-                <select id="verlegemuster">
-                  <option value="10">Gerades Muster +10%</option>
-                  <option value="12">Versetzt +12%</option>
-                  <option value="15">Diagonal +15%</option>
-                  <option value="20">Fischgrät +20%</option>
-                </select>
-              </div>
-            </div>
-
-            <button class="btn-calc" onclick="berechnenFliesen()">Fliesenmenge berechnen →</button>
-
-            <div class="calc-result" id="ergebnis">
-              <div class="result-grid">
-                <div class="result-item">
-                  <div class="result-label">Nettofläche</div>
-                  <div class="result-val" id="res-netto">– <span>m²</span></div>
-                </div>
-                <div class="result-item">
-                  <div class="result-label">Verschnittfaktor</div>
-                  <div class="result-val" id="res-verschnitt">– <span>%</span></div>
-                </div>
-                <div class="result-item">
-                  <div class="result-label">Bestellmenge</div>
-                  <div class="result-val" id="res-bestellung">– <span>m²</span></div>
-                </div>
-                <div class="result-item">
-                  <div class="result-label">Fliesenanzahl</div>
-                  <div class="result-val" id="res-anzahl">– <span>Stk</span></div>
-                </div>
-                <div class="result-item">
-                  <div class="result-label">Kleber (C2 Flexkleber)</div>
-                  <div class="result-val" id="res-kleber">– <span>Sack 25 kg</span></div>
-                </div>
-                <div class="result-item">
-                  <div class="result-label">Fugenmasse</div>
-                  <div class="result-val" id="res-fuge">– <span>kg</span></div>
-                </div>
-              </div>
-              <p class="result-note">Richtwert auf Basis Ihrer Eingaben. Ihr persönlicher Rechner wird auf Ihre Produkte und Verbrauchswerte kalibriert.</p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOLUTIONS -->
   <section class="section section-light" id="loesungen">
     <div class="section-inner">
       <div class="reveal">
