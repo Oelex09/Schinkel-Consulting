@@ -810,6 +810,54 @@
 
     .btn-submit:hover { background: var(--teal-dark); transform: translateY(-2px); }
 
+    /* ── KONTAKT TABS ── */
+    .tab-switcher {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--line);
+      margin-bottom: 28px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding: 12px 24px 14px;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--teal-dark);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+
+    .tab-btn.active {
+      color: var(--navy);
+    }
+
+    .tab-btn.active::after {
+      transform: scaleX(1);
+    }
+
+    .tab-btn:hover:not(.active) { color: var(--ink-mid); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
     /* ── FOOTER ── */
     footer {
       background: var(--navy);
@@ -1304,10 +1352,25 @@
     </div>
 
     <div class="reveal reveal-d1">
-      <!-- Calendly Inline-Widget Beginn -->
-      <div class="calendly-inline-widget" data-url="https://calendly.com/alexander-schinkel-alexanderschinkel/30min" style="min-width:320px;height:700px;"></div>
-      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-      <!-- Calendly Inline-Widget Ende -->
+
+      <!-- Tab Switcher -->
+      <div class="tab-switcher" role="tablist">
+        <button class="tab-btn active" role="tab" aria-selected="true" data-tab="termin">Termin buchen</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="nachricht">Nachricht schreiben</button>
+      </div>
+
+      <!-- Panel: Calendly -->
+      <div class="tab-panel active" id="tab-termin">
+        <div class="calendly-inline-widget" data-url="https://calendly.com/alexander-schinkel-alexanderschinkel/30min" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      </div>
+
+      <!-- Panel: Aidaform -->
+      <div class="tab-panel" id="tab-nachricht">
+        <div data-aidaform-app="form202405" data-url="https://oelex09.aidaform.com/1841" data-width="100%" data-height="520px" data-do-resize></div>
+        <script>(function(){var r,d=document,gt=d.getElementById,cr=d.createElement,tg=d.getElementsByTagName,id="aidaform-app";if(!gt.call(d,id)){r=cr.call(d,"script");r.id=id;r.src="https://widget.aidaform.com/embed.js";(d.head||tg.call(d,"head")[0]).appendChild(r);}})()</script>
+      </div>
+
     </div>
 
   </div>
@@ -1356,6 +1419,20 @@
   }, { threshold: 0.12 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Tab switcher
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-selected', String(b === btn));
+      });
+      document.querySelectorAll('.tab-panel').forEach(p => {
+        p.classList.toggle('active', p.id === 'tab-' + tab);
+      });
+    });
+  });
 
   // Smooth scroll with nav offset
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
