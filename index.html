@@ -1302,45 +1302,10 @@
     </div>
 
     <div class="reveal reveal-d1">
-      <div class="form-title">Schreib mir</div>
-      <form class="contact-form" method="post" action="#kontakt" aria-label="Kontaktformular">
-
-        <div class="form-row">
-          <label for="cf-name">Vorname &amp; Name</label>
-          <input type="text" id="cf-name" name="cf-name" placeholder="Max Mustermann" required>
-        </div>
-
-        <div class="form-row">
-          <label for="cf-company">Unternehmen <span style="opacity:.5;font-weight:300">(optional)</span></label>
-          <input type="text" id="cf-company" name="cf-company" placeholder="Muster GmbH">
-        </div>
-
-        <div class="form-row">
-          <label for="cf-email">E-Mail</label>
-          <input type="email" id="cf-email" name="cf-email" placeholder="max@beispiel.de" required>
-        </div>
-
-        <div class="form-row">
-          <label for="cf-topic">Worum geht es?</label>
-          <select id="cf-topic" name="cf-topic">
-            <option value="">Bitte wählen …</option>
-            <option value="kennenlernen">Kennenlerngespräch</option>
-            <option value="einzelgespraech">Einzelgespräch</option>
-            <option value="begleitung">Begleitung (3–12 Monate)</option>
-            <option value="retreat">Retreat</option>
-            <option value="unsicher">Noch nicht sicher</option>
-          </select>
-        </div>
-
-        <div class="form-row">
-          <label for="cf-message">Was bewegt dich gerade?</label>
-          <textarea id="cf-message" name="cf-message" rows="4"
-                    placeholder="Beschreibe kurz deine aktuelle Situation …"></textarea>
-        </div>
-
-        <button type="submit" class="btn-submit">Nachricht senden</button>
-
-      </form>
+      <!-- Calendly Inline-Widget Beginn -->
+      <div class="calendly-inline-widget" data-url="https://calendly.com/alexander-schinkel-alexanderschinkel/30min" style="min-width:320px;height:700px;"></div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      <!-- Calendly Inline-Widget Ende -->
     </div>
 
   </div>
