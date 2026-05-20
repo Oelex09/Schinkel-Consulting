@@ -7,6 +7,8 @@
   <link rel="icon" type="image/png" href="Icon_Google_Ads.png" />
   <meta name="description" content="Begleitung für Unternehmer und Führungskräfte durch die Entscheidungen, die alles verändern." />
 
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="aeafbffb-91e0-4b3e-b6a4-14b6ecc0d449" data-blockingmode="auto" type="text/javascript"></script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -1368,124 +1370,6 @@
       }
     });
   });
-  // Cookie Banner
-  (function() {
-    if (localStorage.getItem('cookie-consent')) return;
-
-    const banner = document.createElement('div');
-    banner.id = 'cookie-banner';
-    banner.innerHTML = `
-      <div class="cb-inner">
-        <div class="cb-text">
-          <strong>Cookies & Datenschutz</strong>
-          <p>Diese Website verwendet Cookies von Calendly und Google Fonts. Mit Klick auf „Akzeptieren" stimmst du der Nutzung zu. <a href="datenschutz.html">Datenschutzerklärung</a></p>
-        </div>
-        <div class="cb-actions">
-          <button id="cb-decline">Nur notwendige</button>
-          <button id="cb-accept">Akzeptieren</button>
-        </div>
-      </div>
-    `;
-
-    const style = document.createElement('style');
-    style.textContent = `
-      #cookie-banner {
-        position: fixed;
-        bottom: 0; left: 0; right: 0;
-        z-index: 9999;
-        background: #1A2A35;
-        border-top: 1px solid rgba(91,184,180,0.25);
-        padding: 20px 40px;
-        font-family: 'Outfit', sans-serif;
-        animation: slideUp 0.4s ease;
-      }
-      @keyframes slideUp {
-        from { transform: translateY(100%); }
-        to   { transform: translateY(0); }
-      }
-      .cb-inner {
-        max-width: 1160px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 32px;
-        flex-wrap: wrap;
-      }
-      .cb-text strong {
-        display: block;
-        font-size: 0.88rem;
-        font-weight: 600;
-        color: #ffffff;
-        margin-bottom: 4px;
-      }
-      .cb-text p {
-        font-size: 0.82rem;
-        font-weight: 300;
-        color: rgba(255,255,255,0.60);
-        line-height: 1.5;
-        margin: 0;
-      }
-      .cb-text a {
-        color: #5BB8B4;
-        text-decoration: underline;
-      }
-      .cb-actions {
-        display: flex;
-        gap: 12px;
-        flex-shrink: 0;
-      }
-      #cb-decline {
-        padding: 10px 24px;
-        background: transparent;
-        border: 1.5px solid rgba(255,255,255,0.25);
-        color: rgba(255,255,255,0.70);
-        font-family: 'Outfit', sans-serif;
-        font-size: 0.78rem;
-        font-weight: 500;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        border-radius: 2px;
-        cursor: pointer;
-        transition: border-color 0.2s, color 0.2s;
-      }
-      #cb-decline:hover { border-color: #5BB8B4; color: #5BB8B4; }
-      #cb-accept {
-        padding: 10px 24px;
-        background: #5BB8B4;
-        border: none;
-        color: #1A2A35;
-        font-family: 'Outfit', sans-serif;
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        border-radius: 2px;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      #cb-accept:hover { background: #3A9A96; }
-      @media (max-width: 640px) {
-        #cookie-banner { padding: 16px 24px; }
-        .cb-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
-        .cb-actions { width: 100%; }
-        #cb-decline, #cb-accept { flex: 1; text-align: center; }
-      }
-    `;
-
-    document.head.appendChild(style);
-    document.body.appendChild(banner);
-
-    document.getElementById('cb-accept').addEventListener('click', function() {
-      localStorage.setItem('cookie-consent', 'accepted');
-      banner.remove();
-    });
-
-    document.getElementById('cb-decline').addEventListener('click', function() {
-      localStorage.setItem('cookie-consent', 'declined');
-      banner.remove();
-    });
-  })();
 </script>
 
 </body>
