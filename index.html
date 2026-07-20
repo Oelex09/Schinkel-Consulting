@@ -3,9 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alexander Schinkel – Transformationsarchitekt</title>
-  <link rel="icon" type="image/png" href="Icon_Google_Ads.png" />
-  <meta name="description" content="Begleitung für Unternehmer und Führungskräfte durch die Entscheidungen, die alles verändern." />
+  <title>Alexander Schinkel – Immobilienberatung &amp; Projektsteuerung</title>
+  <link rel="icon" type="image/png" href="logo-mark-navygold.png" />
+  <meta name="description" content="Alexander Schinkel begutachtet und bewertet Immobilien unabhängig für Käufer:innen und Verkäufer:innen und steuert Bauprojekte von der Idee bis zur Übergabe – mit über 30 Jahren Bauerfahrung und zertifizierter Sachverständigen-Qualifikation." />
+  <link rel="canonical" href="https://www.alexanderschinkel.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Alexander Schinkel" />
+  <meta property="og:title" content="Alexander Schinkel – Immobilienberatung & Projektsteuerung" />
+  <meta property="og:description" content="Unabhängige Immobilien-Gutachten für Käufer:innen und Verkäufer:innen sowie Steuerung von Bauprojekten – mit über 30 Jahren Bauerfahrung und zertifizierter Sachverständigen-Qualifikation." />
+  <meta property="og:url" content="https://www.alexanderschinkel.com/" />
+  <meta property="og:image" content="https://www.alexanderschinkel.com/hero_immobilien.png" />
+  <meta property="og:locale" content="de_DE" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Alexander Schinkel – Immobilienberatung & Projektsteuerung" />
+  <meta name="twitter:description" content="Unabhängige Immobilien-Gutachten für Käufer:innen und Verkäufer:innen sowie Steuerung von Bauprojekten." />
+  <meta name="twitter:image" content="https://www.alexanderschinkel.com/hero_immobilien.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Alexander Schinkel",
+    "description": "Unabhängige Gutachten und Wertermittlung für Käufer:innen und Verkäufer:innen von Immobilien sowie Steuerung von Bauprojekten von der Idee bis zur Übergabe.",
+    "url": "https://www.alexanderschinkel.com/",
+    "telephone": "+4970337080100",
+    "email": "info@alexanderschinkel.com",
+    "image": "https://www.alexanderschinkel.com/logo-mark-navygold.png",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Poststraße 2",
+      "postalCode": "75382",
+      "addressLocality": "Althengstett",
+      "addressCountry": "DE"
+    },
+    "areaServed": "DE",
+    "founder": {
+      "@type": "Person",
+      "name": "Alexander Schinkel",
+      "jobTitle": "Baumeister, Bausachverständiger, Immobilienberater"
+    },
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Immobiliengutachten & Wertermittlung",
+          "description": "Unabhängige Bauzustands- und Wertgutachten für Käufer:innen und Verkäufer:innen von Immobilien."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Projektsteuerung",
+          "description": "Ganzheitliche Abwicklung und Steuerung von Bauprojekten – organisatorisch, technisch und wirtschaftlich."
+        }
+      }
+    ]
+  }
+  </script>
 
   <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="aeafbffb-91e0-4b3e-b6a4-14b6ecc0d449" data-blockingmode="auto" type="text/javascript"></script>
 
@@ -17,20 +74,20 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:       #1A2A35;
-      --navy-mid:   #213545;
-      --blue:       #2A4255;
-      --teal:       #5BB8B4;
-      --teal-dark:  #3A9A96;
-      --teal-pale:  #E4F4F3;
-      --orange:     #E8904A;
+      --navy:       #0B2038;
+      --navy-mid:   #1B3A5C;
+      --blue:       #234B72;
+      --teal:       #B2974F;
+      --teal-dark:  #8F7A3D;
+      --teal-pale:  #F1E9D4;
+      --orange:     #C9A227;
       --white:      #ffffff;
-      --bg:         #F5F0E8;
-      --bg2:        #EDE8DF;
+      --bg:         #DFDDD8;
+      --bg2:        #D2CFC6;
       --ink:        #1a1f2e;
       --ink-mid:    #4a5568;
       --ink-soft:   #9aa3b2;
-      --line:       #DDD8CF;
+      --line:       #CFCAC0;
       --card:       #ffffff;
     }
 
@@ -50,7 +107,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 20px 56px;
+      padding: 10px 56px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -58,16 +115,15 @@
     }
 
     nav.scrolled {
-      background: rgba(245,240,232,0.96);
+      background: rgba(223,221,216,0.96);
       backdrop-filter: blur(16px);
-      padding: 14px 56px;
+      padding: 8px 56px;
       box-shadow: 0 1px 0 var(--line), 0 4px 24px rgba(26,31,46,0.08);
     }
 
     .nav-logo img {
-      height: 44px;
+      height: 88px;
       object-fit: contain;
-      filter: brightness(0);
     }
 
     .nav-links {
@@ -133,7 +189,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('hero_transformation.png');
+      background-image: url('hero_immobilien.png');
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -145,10 +201,10 @@
       inset: 0;
       background: linear-gradient(
         100deg,
-        rgba(245,240,232,0.88) 0%,
-        rgba(245,240,232,0.65) 38%,
-        rgba(245,240,232,0.20) 62%,
-        rgba(245,240,232,0.00) 100%
+        rgba(223,221,216,0.90) 0%,
+        rgba(223,221,216,0.70) 38%,
+        rgba(223,221,216,0.25) 62%,
+        rgba(223,221,216,0.00) 100%
       );
       z-index: 1;
     }
@@ -236,7 +292,7 @@
     .btn-ghost-white {
       display: inline-block;
       padding: 15px 40px;
-      border: 1.5px solid rgba(13,31,60,0.35);
+      border: 1.5px solid rgba(11,32,56,0.35);
       color: var(--navy);
       font-family: 'Outfit', sans-serif;
       font-size: 0.82rem;
@@ -254,58 +310,6 @@
       transform: translateY(-2px);
     }
 
-    /* Stats bar */
-    .hero-stats {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      z-index: 2;
-      background: rgba(13,31,60,0.82);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(91,184,180,0.25);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      opacity: 0;
-      animation: fadeIn 0.8s 1s forwards;
-    }
-
-    .hero-stat {
-      padding: 28px 48px;
-      border-right: 1px solid rgba(91,184,180,0.15);
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .hero-stat:last-child { border-right: none; }
-
-    .stat-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(91,184,180,0.18);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .stat-icon svg { color: var(--teal); }
-
-    .stat-val {
-      font-size: 1.9rem;
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.72rem;
-      font-weight: 400;
-      color: rgba(255,255,255,0.5);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 4px;
-    }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
@@ -393,175 +397,125 @@
     }
 
     .intro-strip-inner {
-      max-width: 1160px;
+      max-width: 860px;
       margin: 0 auto;
       padding: 0 56px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
     }
 
-    .intro-quote {
-      font-size: clamp(1.3rem, 2vw, 1.7rem);
+    .intro-body {
+      margin-top: 20px;
+      max-width: 760px;
+    }
+
+    .intro-body p {
+      font-size: 0.95rem;
       font-weight: 300;
-      font-style: italic;
-      color: var(--ink);
-      line-height: 1.55;
-      border-left: 3px solid var(--teal-dark);
-      padding-left: 28px;
+      color: var(--ink-mid);
+      line-height: 1.85;
     }
 
-    .intro-statements {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
+    .intro-body p + p { margin-top: 18px; }
 
-    .intro-statement {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--ink);
-      padding: 14px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .intro-statement:first-child { border-top: 1px solid var(--line); }
-
-    /* ── FÜR WEN (cards) ── */
+    /* ── FÜR WEN (editorial list, keine Kacheln) ── */
     .forwhom-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-top: 56px;
+      gap: 36px;
+      margin-top: 64px;
     }
 
     .forwhom-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      padding: 36px 28px;
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+      transition: border-color 0.3s;
     }
 
-    .forwhom-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-      border-color: var(--teal);
-    }
+    .forwhom-card:hover { border-top-color: var(--teal); }
 
     .forwhom-number {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--teal-dark);
-      margin-bottom: 16px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      color: var(--ink-soft);
+      margin-bottom: 18px;
+      display: block;
     }
 
     .forwhom-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
+      font-size: 1.02rem;
+      font-weight: 600;
       color: var(--ink);
       margin-bottom: 12px;
-      line-height: 1.3;
+      line-height: 1.35;
     }
 
     .forwhom-card p {
       font-size: 0.88rem;
       font-weight: 300;
       color: var(--ink-mid);
-      line-height: 1.7;
-    }
-
-    /* ── ANGEBOTE ── */
-    .angebote-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
-      margin-top: 56px;
-    }
-
-    .angebot-card {
-      background: var(--navy-mid, #162d55);
-      padding: 48px 40px;
-      position: relative;
-      transition: background 0.3s;
-    }
-
-    .angebot-card:hover { background: var(--blue, #1a4175); }
-
-    .angebot-label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .angebot-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 10px;
-      line-height: 1.2;
-    }
-
-    .angebot-price {
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 20px;
-      letter-spacing: 0.04em;
-    }
-
-    .angebot-desc {
-      font-size: 0.9rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.65);
       line-height: 1.75;
-      margin-bottom: 20px;
     }
 
-    .angebot-features {
-      list-style: none;
-      margin-bottom: 28px;
+    /* ── LEISTUNGEN (Projektsteuerung) ── */
+    .leistungen-intro {
+      max-width: 720px;
+      margin-top: 8px;
     }
 
-    .angebot-features li {
-      font-size: 0.83rem;
+    .vorteile-label {
+      margin-top: 48px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--white);
+    }
+
+    .vorteile-list {
+      max-width: 780px;
+      margin-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .vorteil {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.93rem;
       font-weight: 300;
-      color: rgba(255,255,255,0.55);
-      padding: 7px 0 7px 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      position: relative;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.8;
     }
 
-    .angebot-features li::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 50%;
-      transform: translateY(-50%);
-      width: 6px; height: 1px;
-      background: var(--teal);
+    .vorteil strong {
+      color: var(--white);
+      font-weight: 600;
     }
 
-    .angebot-cta {
+    .leistungen-closing {
+      max-width: 720px;
+      margin-top: 40px;
+      font-size: 0.93rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.85;
+    }
+
+    .leistungen-closing strong { color: var(--white); font-weight: 600; }
+
+    .leistungen-cta {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 0.78rem;
+      gap: 10px;
+      margin-top: 64px;
+      font-size: 0.8rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--teal);
       text-decoration: none;
       transition: gap 0.2s, color 0.2s;
     }
 
-    .angebot-cta:hover { gap: 14px; color: #00cce0; }
+    .leistungen-cta:hover { gap: 16px; color: #D8BD7A; }
 
     /* ── ÜBER MICH ── */
     .uber-grid {
@@ -581,21 +535,6 @@
       border-radius: 2px;
     }
 
-    .uber-badge {
-      position: absolute;
-      bottom: -24px;
-      right: -24px;
-      background: var(--teal);
-      color: var(--navy);
-      padding: 20px 28px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      line-height: 1.4;
-      border-radius: 2px;
-    }
-
     .uber-text { padding-top: 16px; }
 
     .uber-body {
@@ -606,110 +545,6 @@
     }
 
     .uber-body p + p { margin-top: 18px; }
-
-    .uber-highlights {
-      margin-top: 32px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .uber-highlight {
-      padding: 20px;
-      background: var(--bg);
-      border-left: 3px solid var(--teal);
-      border-radius: 0 2px 2px 0;
-    }
-
-    .uber-highlight strong {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--teal-dark);
-      margin-bottom: 4px;
-    }
-
-    .uber-highlight span {
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: var(--ink-mid);
-    }
-
-    /* ── TESTIMONIALS ── */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 56px;
-    }
-
-    .testimonial-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      padding: 36px;
-      position: relative;
-    }
-
-    .testimonial-stars {
-      font-size: 0.8rem;
-      color: var(--orange);
-      margin-bottom: 16px;
-      letter-spacing: 0.04em;
-    }
-
-    .testimonial-text {
-      font-size: 0.93rem;
-      font-weight: 300;
-      color: var(--ink-mid);
-      line-height: 1.8;
-      margin-bottom: 28px;
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .author-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--teal-pale);
-      border: 1.5px solid var(--teal);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--teal-dark);
-      flex-shrink: 0;
-    }
-
-    .author-name {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .author-role {
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: var(--ink-soft);
-    }
-
-    .testimonial-overall {
-      text-align: center;
-      margin-top: 32px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: var(--ink-soft);
-    }
 
     /* ── KONTAKT ── */
     .kontakt-inner {
@@ -873,8 +708,7 @@
     footer img {
       height: 36px;
       object-fit: contain;
-      filter: brightness(0) invert(1);
-      opacity: 0.6;
+      opacity: 0.85;
     }
 
     footer span {
@@ -896,7 +730,6 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .forwhom-grid { grid-template-columns: repeat(2, 1fr); }
-      .angebote-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
@@ -908,7 +741,7 @@
         position: absolute;
         top: 100%;
         left: 0; right: 0;
-        background: rgba(13,31,60,0.98);
+        background: rgba(11,32,56,0.98);
         flex-direction: column;
         gap: 0;
         padding: 8px 0 16px;
@@ -923,23 +756,22 @@
         display: block;
         padding: 14px 24px;
         font-size: 0.85rem;
+        color: rgba(255,255,255,0.85);
       }
+
+      .nav-links a:hover { color: var(--teal); }
 
       .nav-cta { margin: 6px 24px 0; display: block; text-align: center; }
 
       .menu-toggle { display: flex; }
 
       .hero-content { padding: 0 24px; }
-      .hero-stat { padding: 20px 24px; }
-      .hero-stats { grid-template-columns: 1fr; }
 
       .section-inner { padding: 0 24px; }
 
-      .intro-strip-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+      .intro-strip-inner { padding: 0 24px; }
       .forwhom-grid { grid-template-columns: 1fr; }
       .uber-grid { grid-template-columns: 1fr; gap: 48px; }
-      .uber-badge { position: static; margin-top: 16px; display: inline-block; }
-      .testimonials-grid { grid-template-columns: 1fr; }
       .kontakt-inner { grid-template-columns: 1fr; padding: 0 24px; gap: 48px; }
       footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
     }
@@ -951,7 +783,7 @@
 <!-- NAVIGATION -->
 <nav id="nav" role="navigation" aria-label="Hauptnavigation">
   <a href="#" class="nav-logo" aria-label="Alexander Schinkel — Startseite">
-    <img src="logo_schinkel.png" alt="Alexander Schinkel" height="44"
+    <img src="logo-lockup-navy.png" alt="Alexander Schinkel" height="44"
          onerror="this.style.display='none'">
   </a>
 
@@ -960,9 +792,9 @@
   </button>
 
   <ul class="nav-links" id="nav-menu" role="list">
-    <li><a href="#angebote">Angebote</a></li>
+    <li><a href="#angebote">Leistungen</a></li>
     <li><a href="#ueber-mich">Über mich</a></li>
-    <li><a href="#kontakt" class="nav-cta">Gespräch vereinbaren</a></li>
+    <li><a href="#kontakt" class="nav-cta">Kontakt aufnehmen</a></li>
   </ul>
 </nav>
 
@@ -973,60 +805,25 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
-    <div class="hero-eyebrow">Transformationsarchitekt</div>
+    <div class="hero-eyebrow">Visionen · Menschen · Immobilien</div>
 
     <h1 class="hero-title">
-      Klarheit in den<br>
-      Momenten, die alles<br>
-      <span class="highlight">verändern.</span>
+      Immobilien mit dem<br>
+      Blick des<br>
+      <span class="highlight">Baumeisters Schinkel.</span>
     </h1>
 
     <p class="hero-sub">
-      Ich begleite Unternehmer und Führungskräfte durch die
-      Entscheidungen, die sie mit niemandem besprechen können.
+      Mit über 30 Jahren Erfahrung im Baugewerbe und als zertifizierter
+      Sachverständiger begleite ich Sie mit einer unabhängigen
+      Einschätzung beim Kauf oder Verkauf einer Immobilie sowie bei der
+      Steuerung Ihres Bauprojekts — mit Kompetenz, Erfahrung und
+      Unabhängigkeit.
     </p>
 
     <div class="hero-actions">
       <a href="#kontakt" class="btn-teal">Gespräch vereinbaren</a>
       <a href="#ueber-mich" class="btn-ghost-white">Mehr erfahren</a>
-    </div>
-  </div>
-
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="stat-icon">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <rect x="2" y="3" width="7" height="7"/><rect x="15" y="3" width="7" height="7"/>
-          <rect x="2" y="14" width="7" height="7"/><rect x="15" y="14" width="7" height="7"/>
-        </svg>
-      </div>
-      <div>
-        <div class="stat-val">30+</div>
-        <div class="stat-label">Jahre Berufserfahrung</div>
-      </div>
-    </div>
-    <div class="hero-stat">
-      <div class="stat-icon">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-        </svg>
-      </div>
-      <div>
-        <div class="stat-val">4,9 <span style="color:#f5a623;">★</span></div>
-        <div class="stat-label">Kundenzufriedenheit</div>
-      </div>
-    </div>
-    <div class="hero-stat">
-      <div class="stat-icon">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
-        </svg>
-      </div>
-      <div>
-        <div class="stat-val">100%</div>
-        <div class="stat-label">Lösungsorientiert</div>
-      </div>
     </div>
   </div>
 </section>
@@ -1036,17 +833,26 @@
 <div class="intro-strip">
   <div class="intro-strip-inner">
 
-    <blockquote class="intro-quote reveal">
-      „Die meisten Unternehmer haben niemanden,
-      mit dem sie wirklich reden — nicht über Strategie,
-      nicht über Zahlen, sondern über das,
-      was sie nachts wachhält."
-    </blockquote>
+    <span class="section-label reveal">Baumanagement</span>
+    <h2 class="section-title reveal">Ganzheitliche Leistungen für alle Phasen eines Bauprojekts</h2>
 
-    <div class="intro-statements reveal reveal-d1">
-      <p class="intro-statement">Kein Coaching.</p>
-      <p class="intro-statement">Kein klassisches Consulting.</p>
-      <p class="intro-statement">Sondern: Begleitung an Schwellen.</p>
+    <div class="intro-body reveal reveal-d1">
+      <p>
+        Durch meine umfassende Erfahrung kann ich kostengruppenübergreifend
+        in meiner klassischen Kernkompetenz, den Leistungsphasen der
+        Honorarordnung für Architekten und Ingenieure (HOAI), ein breites
+        Know-how vorweisen. Dieses reicht vom Neubau bis zur Modernisierung,
+        vom Wohnungsbau über Büro-/Verwaltungs- und Retailimmobilien,
+        Bauwerke aus dem Bereich Life Science und Kliniken, bis hin zu
+        komplexen Sonderbauten unterschiedlichen Umfangs.
+      </p>
+      <p>
+        Ich vertrete Auftraggeber:innen und Investor:innen vor, während
+        und nach der Bauausführung und bündle durch den Einsatz des Integralen
+        Baumanagements sowie der Lean-Methodik alle
+        Baumanagementleistungen über die gesamte Bauphase von der
+        Projektierung über die Planung bis zum Gebäudebetrieb.
+      </p>
     </div>
 
   </div>
@@ -1057,33 +863,34 @@
 <section class="section section-bg" id="fuer-wen">
   <div class="section-inner">
 
-    <span class="section-label reveal">Zielgruppe</span>
-    <h2 class="section-title reveal">Für wen diese Arbeit ist</h2>
+    <span class="section-label reveal">Klientel</span>
+    <h2 class="section-title reveal">Für wen diese Beratung ist</h2>
     <p class="section-sub reveal">
-      Diese Arbeit ist nicht für jeden. Sie ist für Menschen,
-      die an einem Punkt stehen, wo Methoden allein nicht mehr weiterhelfen.
+      Ob Erwerb, Veräußerung, Kapitalanlage oder ein eigenes Bauprojekt:
+      Diese Beratung richtet sich an Menschen, die vor einer Entscheidung
+      eine fundierte, unabhängige Einschätzung erwarten.
     </p>
 
     <div class="forwhom-grid">
       <div class="forwhom-card reveal reveal-d1">
-        <div class="forwhom-number">01</div>
-        <h3>Der Unternehmer an der Schwelle</h3>
-        <p>Etwas muss sich grundlegend ändern — aber du weißt noch nicht genau was.</p>
+        <span class="forwhom-number">I</span>
+        <h3>Verkäufer:innen mit Weitblick</h3>
+        <p>Sie wollen vor dem Verkauf wissen, was Ihre Immobilie wirklich wert ist — unabhängig von Maklerinteressen.</p>
       </div>
       <div class="forwhom-card reveal reveal-d2">
-        <div class="forwhom-number">02</div>
-        <h3>Der Erfolgreiche mit dem leisen Zweifel</h3>
-        <p>Du hast erreicht, was du dir vorgenommen hast. Und fragst dich, ob das alles war.</p>
+        <span class="forwhom-number">II</span>
+        <h3>Käufer:innen vor der großen Entscheidung</h3>
+        <p>Sie haben ein Objekt gefunden — und wollen wissen, was wirklich dahintersteckt, bevor Sie unterschreiben.</p>
       </div>
       <div class="forwhom-card reveal reveal-d3">
-        <div class="forwhom-number">03</div>
-        <h3>Der Entscheider ohne Resonanz</h3>
-        <p>Du triffst Entscheidungen täglich – aber mit wem besprichst du das wirklich?</p>
+        <span class="forwhom-number">III</span>
+        <h3>Bauherr:innen mit großem Vorhaben</h3>
+        <p>Sie planen ein Bauprojekt und wollen es organisatorisch, technisch und wirtschaftlich sicher durch alle Phasen bringen.</p>
       </div>
       <div class="forwhom-card reveal reveal-d4">
-        <div class="forwhom-number">04</div>
-        <h3>Der Mensch hinter dem Titel</h3>
-        <p>Wer steht hinter dem Unternehmer, dem CEO, dem Macher — wer bist du eigentlich?</p>
+        <span class="forwhom-number">IV</span>
+        <h3>Investor:innen mit Anspruch</h3>
+        <p>Sie wollen vor einer Kapitalanlage wissen, ob eine Immobilie hält, was die Zahlen versprechen.</p>
       </div>
     </div>
 
@@ -1091,102 +898,53 @@
 </section>
 
 
-<!-- ANGEBOTE -->
+<!-- LEISTUNGEN -->
 <section class="section section-dark" id="angebote">
   <div class="section-inner">
 
     <span class="section-label reveal">Leistungen</span>
-    <h2 class="section-title section-title-light reveal">Was ich anbiete</h2>
-    <p class="section-sub section-sub-light reveal">
-      Vier Formate — jeweils mit einem klaren Zweck. Kein Pauschalangebot,
-      sondern Begleitung, die zu deinem Moment passt.
+    <h2 class="section-title section-title-light reveal">Planen. Koordinieren. Steuern.</h2>
+    <p class="section-sub section-sub-light leistungen-intro reveal">
+      Ich übernehme die komplette Abwicklung Ihres Bauprojekts. Als Ihr
+      Projektsteuerer entlaste ich Sie in organisatorischer, technischer
+      sowie wirtschaftlicher Hinsicht und vertrete Ihre Interessen
+      konsequent gegenüber allen Projektbeteiligten – von Behörden und
+      Architekten bis hin zu den Handwerksbetrieben.
     </p>
 
-    <div class="angebote-grid">
+    <div class="vorteile-label reveal reveal-d1">Ihre Vorteile auf einen Blick</div>
 
-      <div class="angebot-card reveal reveal-d1">
-        <span class="angebot-label">Einstieg</span>
-        <h3 class="angebot-title">Das Kennenlerngespräch</h3>
-        <p class="angebot-price">60 Minuten · 250 €</p>
-        <p class="angebot-desc">
-          Kein kostenloses Erstgespräch — ein bezahltes Gespräch mit echtem Wert.
-          Du gehst mit Klarheit heraus, unabhängig davon, ob wir weiterarbeiten.
-          Es filtert. Es positioniert. Es schafft sofort Wert.
-        </p>
-        <a href="#kontakt" class="angebot-cta">
-          Gespräch buchen
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
+    <div class="vorteile-list">
+      <div class="vorteil reveal reveal-d1">
+        <strong>Ganzheitliche Abwicklung:</strong> Rundum-Betreuung von der
+        ersten Idee über die Ausschreibung und Bauphase bis zur Übergabe
+        und Gewährleistungsverfolgung.
       </div>
-
-      <div class="angebot-card reveal reveal-d2">
-        <span class="angebot-label">Angebot 01</span>
-        <h3 class="angebot-title">Das Einzelgespräch</h3>
-        <p class="angebot-price">90 – 120 Minuten · ab 500 €</p>
-        <p class="angebot-desc">
-          Ein Gespräch, das in die Tiefe geht.
-          Du kommst mit einer Situation. Du gehst mit Klarheit.
-        </p>
-        <ul class="angebot-features">
-          <li>Vorbereitung &amp; Nachbereitung inklusive</li>
-          <li>Schriftliche Zusammenfassung der Kernerkenntnisse</li>
-          <li>Keine Verpflichtung zur weiteren Zusammenarbeit</li>
-        </ul>
-        <a href="#kontakt" class="angebot-cta">
-          Anfrage stellen
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
+      <div class="vorteil reveal reveal-d2">
+        <strong>Strenge Projektkontrolle:</strong> Kontinuierliche
+        Überwachung von Terminen, Kosten und Qualitäten in allen
+        Projektphasen.
       </div>
-
-      <div class="angebot-card reveal reveal-d1">
-        <span class="angebot-label">Angebot 02</span>
-        <h3 class="angebot-title">Die Begleitung</h3>
-        <p class="angebot-price">3 · 6 · 12 Monate · Preis auf Anfrage</p>
-        <p class="angebot-desc">
-          Keine wöchentlichen Meetings. Keine Hausaufgaben.
-          Begleitung an den Momenten, die wirklich zählen.
-        </p>
-        <ul class="angebot-features">
-          <li>Monatliche Tiefengespräche (90–120 Minuten)</li>
-          <li>Erreichbarkeit in entscheidenden Momenten</li>
-          <li>Das ehrliche Spiegelbild — immer</li>
-          <li>Strategie und Menschlichkeit in einem</li>
-        </ul>
-        <a href="#kontakt" class="angebot-cta">
-          Anfrage stellen
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
+      <div class="vorteil reveal reveal-d3">
+        <strong>Höchste Sicherheit:</strong> Frühzeitiges Erkennen und
+        Vermeiden von Fehlentwicklungen für maximale Budget- und
+        Zeitkonformität.
       </div>
-
-      <div class="angebot-card reveal reveal-d2">
-        <span class="angebot-label">Angebot 03</span>
-        <h3 class="angebot-title">Das Retreat</h3>
-        <p class="angebot-price">1 – 3 Tage · 6 – 12 Teilnehmer · Preis auf Anfrage</p>
-        <p class="angebot-desc">
-          Bewusst gewählte Orte. Kleine Gruppe. Tiefe Arbeit.
-          Ein Raum, in dem das gesagt werden darf, was im Alltag keinen Platz hat.
-        </p>
-        <ul class="angebot-features">
-          <li>Exklusiver Ort — Natur, Stille, Schwelle</li>
-          <li>Kuratierte Gruppe gleichgesinnter Unternehmer</li>
-          <li>Tiefe Einzel- und Gruppenformate</li>
-          <li>Vollständige Verpflegung und Unterkunft inklusive</li>
-        </ul>
-        <a href="#kontakt" class="angebot-cta">
-          Anfrage stellen
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
-      </div>
-
     </div>
+
+    <p class="leistungen-closing reveal">
+      Vertrauen Sie auf die Kompetenz und Erfahrung von
+      <strong>Alexander Schinkel</strong> – Ihrem Partner für messbaren
+      Bauerfolg.
+    </p>
+
+    <a href="#kontakt" class="leistungen-cta reveal">
+      Projekt im persönlichen Gespräch besprechen
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+
   </div>
 </section>
 
@@ -1199,10 +957,7 @@
       <div class="uber-img reveal">
         <img src="364.jpeg"
              alt="Alexander Schinkel"
-             onerror="this.style.background='#e2e6ed';this.style.minHeight='400px'">
-        <div class="uber-badge">
-          Bauingenieur<br>&amp; Unternehmer
-        </div>
+             onerror="this.style.background='#CFCAC0';this.style.minHeight='400px'">
       </div>
 
       <div class="uber-text reveal reveal-d1">
@@ -1210,109 +965,27 @@
         <h2 class="section-title">Alexander Schinkel</h2>
         <div class="uber-body">
           <p>
-            Ich bin Bauingenieur und Unternehmer. Ich habe aufgebaut,
-            verloren und neu begonnen. Was ich anbiete, kommt nicht
-            aus einem Ausbildungsprogramm — es kommt aus dem, was
-            ich selbst erlebt und überwunden habe.
+            Ich bin gelernter Maurer- und Stahlbetonbaumeister, ausgebildeter
+            Kaufmann und seit 1994 im Bauhandwerk zu Hause. Über 30 Jahre habe
+            ich gebaut, saniert, geprüft und beraten. Heute steuere ich
+            Bauprojekte und begleite Menschen mit einer unabhängigen
+            Einschätzung beim Kauf oder Verkauf ihrer Immobilie.
           </p>
           <p>
-            Meine Arbeit entsteht im Schnittfeld von Strategie,
-            unternehmerischer Erfahrung und menschlicher Tiefe.
-            Ich bin kein Therapeut und kein Berater im klassischen Sinne —
-            ich bin jemand, der weiß, wie sich Schwellen anfühlen.
+            Als freier Sachverständiger sehe ich einer Immobilie an,
+            was ein Exposé verschweigt. Dieses Wissen ist der eigentliche
+            Mehrwert in der Beratung — nicht die schönste Beschreibung,
+            sondern die ehrlichste Einschätzung.
           </p>
           <p>
-            Wenn du an einem Punkt bist, wo Strategie allein
-            nicht mehr reicht — dann ist das der richtige Moment.
+            Visionen, Menschen, Immobilien — in dieser Reihenfolge. Wer kauft,
+            verkauft oder baut, trifft eine der größten Entscheidungen seines
+            Lebens. Diese Entscheidung verdient eine Beratung, die Kompetenz,
+            Erfahrung und Unabhängigkeit miteinander verbindet.
           </p>
         </div>
-
-        <div class="uber-highlights">
-          <div class="uber-highlight">
-            <strong>Die Wurzeln</strong>
-            <span>Bau &amp; Projektmanagement · Kaufmann</span>
-          </div>
-          <div class="uber-highlight">
-            <strong>Fokus</strong>
-            <span>Transformation &amp; Entscheidung</span>
-          </div>
-          <div class="uber-highlight">
-            <strong>Format</strong>
-            <span>Einzel · Begleitung · Retreat</span>
-          </div>
-          <div class="uber-highlight">
-            <strong>Standort</strong>
-            <span>Althengstett</span>
-          </div>
-        </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-
-<!-- TESTIMONIALS -->
-<section class="section section-bg" id="stimmen">
-  <div class="section-inner">
-
-    <span class="section-label reveal">Referenzen</span>
-    <h2 class="section-title reveal">Stimmen</h2>
-
-    <div class="testimonials-grid">
-
-      <div class="testimonial-card reveal reveal-d1">
-        <div class="testimonial-stars">★★★★★ 4,9 / 5</div>
-        <p class="testimonial-text">„Ich bin mit der gesamten Zusammenarbeit außerordentlich zufrieden. Die Kompetenz war in jeder Phase spürbar, alle Inhalte wurden klar und verständlich erklärt und ich fühlte mich jederzeit bestens begleitet. Die Zielerreichung lag bei 100 % – meine Erwartungen wurden sogar übertroffen."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">MW</div>
-          <div>
-            <div class="author-name">Martin W.</div>
-            <div class="author-role">Geschäftsführer</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal reveal-d2">
-        <div class="testimonial-stars">★★★★★ 4,8 / 5</div>
-        <p class="testimonial-text">„Ich bin sehr zufrieden mit der Zusammenarbeit. Die Kompetenz, Erklärungen, Zielerreichung und Kommunikation waren alle ausgezeichnet. Das Preis-Leistungs-Verhältnis war ebenfalls sehr gut. Insgesamt eine sehr positive Erfahrung und absolut empfehlenswert!"</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">SF</div>
-          <div>
-            <div class="author-name">Silvio F.</div>
-            <div class="author-role">Geschäftsführer</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal reveal-d3">
-        <div class="testimonial-stars">★★★★★ 4,9 / 5</div>
-        <p class="testimonial-text">„Die Zusammenarbeit war von Anfang bis Ende sehr angenehm. Alles wurde klar erklärt, sehr professionell durchgeführt und ich habe das erreicht, was ich mir gewünscht habe. Die Kommunikation war jederzeit freundlich und zuverlässig."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">VB</div>
-          <div>
-            <div class="author-name">Vitor B.</div>
-            <div class="author-role">Abteilungsleiter</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal reveal-d4">
-        <div class="testimonial-stars">★★★★★ 4,9 / 5</div>
-        <p class="testimonial-text">„Ich bin mit der Leistung wirklich sehr zufrieden. Alles wurde kompetent, verständlich und zielorientiert umgesetzt. Die Kommunikation lief jederzeit schnell und angenehm. Das Preis-Leistungs-Verhältnis ist sehr gut. Insgesamt eine top Erfahrung!"</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">JH</div>
-          <div>
-            <div class="author-name">Jessica H.</div>
-            <div class="author-role">Raumausstatterin</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="testimonial-overall reveal">
-      Durchschnittliche Bewertung: <strong>4,9 ★</strong> von 5 – basierend auf Kundenfeedback
     </div>
   </div>
 </section>
@@ -1324,11 +997,10 @@
 
     <div class="reveal">
       <span class="section-label">Kontakt</span>
-      <h2 class="section-title">Gespräch vereinbaren.</h2>
+      <h2 class="section-title">Sprechen wir über Ihr Vorhaben.</h2>
       <p class="section-sub">
-        Wenn du das Gefühl hast, dass du an einem dieser Momente stehst —
-        schreib mir. Kein Pitch. Kein Verkaufsgespräch.
-        Nur ein ehrliches erstes Gespräch.
+        Ob eine fundierte Einschätzung vor Kauf oder Verkauf, oder die
+        Steuerung Ihres Bauprojekts — schreiben Sie mir.
       </p>
       <br>
       <a href="tel:+4970337080100" class="kontakt-detail">
@@ -1379,8 +1051,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="logo_schinkel.png" alt="Alexander Schinkel" />
-  <span>© 2026 Alexander Schinkel · Transformationsarchitekt</span>
+  <img src="logo-lockup-white.png" alt="Alexander Schinkel" />
+  <span>© 2026 Alexander Schinkel · Visionen · Menschen · Immobilien</span>
   <span>
     <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
     <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
