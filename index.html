@@ -732,7 +732,11 @@
       .forwhom-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    @media (max-width: 768px) {
+    /* Nav-Breakpoint bewusst breiter als der restliche Content-Breakpoint:
+       zwischen ~769–960px (Tablets) ist nicht genug Platz für großes Logo
+       + volle Inline-Navigation nebeneinander, daher hier schon die
+       kompakte Hamburger-Variante. */
+    @media (max-width: 960px) {
       nav { padding: 12px 24px; }
       nav.scrolled { padding: 10px 24px; }
 
@@ -766,7 +770,9 @@
       .nav-cta { margin: 6px 24px 0; display: block; text-align: center; }
 
       .menu-toggle { display: flex; }
+    }
 
+    @media (max-width: 768px) {
       .hero-content { padding: 0 24px; }
 
       .section-inner { padding: 0 24px; }
