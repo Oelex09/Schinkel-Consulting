@@ -1076,21 +1076,6 @@
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  // Temporäres Debug-Overlay: ?debug=1 an die URL anhängen
-  if (location.search.includes('debug=1')) {
-    const logoImg = document.querySelector('.nav-logo img');
-    const box = logoImg.getBoundingClientRect();
-    const info = document.createElement('div');
-    info.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#ff0;color:#000;font:12px monospace;padding:10px;white-space:pre-wrap;';
-    info.textContent =
-      'innerWidth: ' + window.innerWidth +
-      ' | devicePixelRatio: ' + window.devicePixelRatio +
-      ' | logo naturalW/H: ' + logoImg.naturalWidth + '/' + logoImg.naturalHeight +
-      ' | logo rendered W/H: ' + Math.round(box.width) + '/' + Math.round(box.height) +
-      ' | navHeight: ' + nav.offsetHeight;
-    document.body.appendChild(info);
-  }
-
   // Mobile menu toggle
   const menuBtn = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
