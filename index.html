@@ -121,9 +121,26 @@
       box-shadow: 0 1px 0 var(--line), 0 4px 24px rgba(26,31,46,0.08);
     }
 
+    .nav-logo {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      text-decoration: none;
+    }
+
     .nav-logo img {
       height: 88px;
       object-fit: contain;
+    }
+
+    .nav-tagline {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal-dark);
+      white-space: nowrap;
     }
 
     .nav-links {
@@ -741,6 +758,7 @@
       nav.scrolled { padding: 10px 24px; }
 
       .nav-logo img { height: 52px; }
+      .nav-tagline { font-size: 0.56rem; letter-spacing: 0.1em; }
 
       .nav-links {
         display: none;
@@ -773,7 +791,8 @@
     }
 
     @media (max-width: 768px) {
-      .hero-content { padding: 0 24px; }
+      .hero { align-items: flex-start; }
+      .hero-content { padding: 120px 24px 40px; }
 
       .section-inner { padding: 0 24px; }
 
@@ -791,8 +810,9 @@
 <!-- NAVIGATION -->
 <nav id="nav" role="navigation" aria-label="Hauptnavigation">
   <a href="#" class="nav-logo" aria-label="Alexander Schinkel — Startseite">
-    <img src="logo-lockup-navy.png" alt="Alexander Schinkel" height="44"
+    <img src="logo-lockup-navy.png" alt="Alexander Schinkel"
          onerror="this.style.display='none'">
+    <span class="nav-tagline">Visionen · Menschen · Immobilien</span>
   </a>
 
   <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-menu">
